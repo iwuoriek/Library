@@ -1,12 +1,85 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>The Library</title>
+        <style type="text/css">
+            .td-width{
+                width: 50%;
+            }
+           
+        </style>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="menuTemplate.xhtml">
+            <ui:define name="body">
+                <div style="width: 100%;">
+                    <h:form>
+                        <div class="content-div">
+                            <h:inputText class="searchField font-dark" value="Search"/>
+                        </div>
+                        <div class="content-div">
+                            <h:button class="button font-light" value="Search"/>
+                        </div>
+                    </h:form>
+                </div>
+                <div>
+                    <!--TODO Picture slide-->
+                </div>
+                <table bgcolor="#f2f6f7" width="100%" cellpadding="25px">
+                    <tr>
+                        <td align="right" class="td-width">
+                            <div class="card">
+                                <div class="card-title">
+                                    <p class="font-light" align="center">News</p>
+                                </div>
+                                <div class="card-body" align="left">
+                                    <p class="font-dark">Welcome to <span class="link">THE LIBRARY</span>.</p>
+                                    <p class="font-dark">We provide you with a variety of books, all at the click of a button.</p>
+                                    <p class="font-dark">The need to leave your comfort zone has been eliminated. Want to know more? Navigate to the <h:link class="link" outcome="aboutus">ABOUT US PAGE</h:link></p>
+                                    <hr/>
+                                    <p class="font-dark">Monitor this card for updates, news and recommendations.</p>
+                                    <hr/>
+                                    <h:link class="link">Link 2</h:link>
+                                </div>
+                            </div>
+                        </td>
+                        <td align="left" class="td-width">
+                            <div class="card">
+                                <div class="card-title">
+                                    <p class="font-light" align="center">Top Rated Books</p>
+                                </div>
+                                <div class="card-body" align="left">
+                                    
+                                    <!--TODO List to rated books-->
+                                    
+                                    <h:link class="link">Link 1</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 2</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 3</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 4</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 1</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 2</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 3</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 1</h:link>
+                                    <hr/>
+                                    <h:link class="link">Link 2</h:link>
+                                    <hr/>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
