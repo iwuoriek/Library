@@ -1,9 +1,12 @@
 body{
-    background-color: #f2f6f7;
+    background-color: white;
+    position: relative;
+    margin: 0px;
 }
 
 div{
     background-color: white;
+    position: relative;
 }
 
 .content-div{
@@ -66,6 +69,20 @@ div{
     padding-left: 10px;
 }
 
+.label{
+    margin: 10px;
+}
+.textField{
+    width: 250px;
+    height: 35px;
+    border-style: solid;
+    border-color: #4296a2;
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin: 10px;
+}
+
 .card{
     background-color: white;
     width: 500px;
@@ -83,6 +100,10 @@ div{
     background-color: #4296a2;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.warning{
+    color: red;
 }
 
 
