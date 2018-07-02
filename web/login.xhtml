@@ -16,14 +16,14 @@
                         <table>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="email">Email</h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="email"/></td>
+                                <td align="left"><h:inputText class="textField" id="email" value="#{loginBean.email}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="pword">Password</h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="pword"/></td>
+                                <td align="left"><h:inputSecret class="textField" id="pword" value="#{loginBean.password}"/></td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Login" style="width: 100%; margin-top: 10px;"/></td>
+                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Login" action="#{loginBean.authenticateUser}" style="width: 100%; margin-top: 10px;"/></td>
                             </tr>
                             <tr>
                                 <td class="font-dark" align="center" colspan="2">

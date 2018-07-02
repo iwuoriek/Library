@@ -17,26 +17,26 @@
                         <table>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="fname"/></td>
+                                <td align="left"><h:inputText class="textField" id="fname" value="#{registerBean.firstname}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="lname"/></td>
+                                <td align="left"><h:inputText class="textField" id="lname" value="#{registerBean.lastname}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="email"/></td>
+                                <td align="left"><h:inputText class="textField" id="email" value="#{registerBean.email}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="pword">Password<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="pword"/></td>
+                                <td align="left"><h:inputSecret class="textField" id="pword" value="#{registerBean.password}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="cpword">Confirm Password<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="cpword"/></td>
+                                <td align="left"><h:inputSecret class="textField" id="cpword" value="#{registerBean.confirmPassword}"/></td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" style="width: 100%; margin-top: 10px;"/></td>
+                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" action="#{registerBean.registerUser}" style="width: 100%; margin-top: 10px;"/></td>
                             </tr>
                             <tr>
                                 <td class="font-dark" align="center" colspan="2">
