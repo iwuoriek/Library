@@ -10,7 +10,7 @@
     <h:body>
         <ui:composition template="menuTemplate.xhtml">
             <ui:define name="body">
-                <div align="center" style="margin: 50px; padding: 50px; border-radius: 30px; box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);">
+                <div align="center" style="margin: 50px; margin-left: 200px; margin-right: 200px; padding: 20px; border-radius: 30px; box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);">
                     <h2 align="center" style="font-size: 30px;" class="link">User Registration</h2>
                     <p align="center" class="font-dark">Create and account with us, build your shelve and save all your favourite books.</p>
                     <h:form>
@@ -38,6 +38,12 @@
                             <tr>
                                 <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" style="width: 100%; margin-top: 10px;"/></td>
                             </tr>
+                            <tr>
+                                <td class="font-dark" align="center" colspan="2">
+                                    Already have an account? <h:link class="link warning" outcome="login"> Click to login.</h:link>
+                                </td>
+                            </tr>
+                            
                         </table>
                     </h:form>
                 </div>

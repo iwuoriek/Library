@@ -9,26 +9,27 @@
             .td-width{
                 width: 50%;
             }
-           
+
         </style>
     </h:head>
     <h:body>
         <ui:composition template="menuTemplate.xhtml">
             <ui:define name="body">
-                    <h:form>
-                        <div class="content-div">
-                            <h:inputText class="searchField font-dark" value="Search"/>
-                        </div>
-                        <div class="content-div">
-                            <h:button class="button font-light" value="Search"/>
-                        </div>
-                    </h:form>
+                <h3 class="font-dark" style="margin-left:50px;">Search for books, authors, articles, etc.</h3>
+                <h:form>
+                    <div class="content-div" style="margin-top: 10px; margin-bottom: 10px;">
+                        <h:inputText class="searchField font-dark"/>
+                    </div>
+                    <div class="content-div" style="margin-top: 10px; margin-bottom: 10px;">
+                        <h:button class="button font-light" value="Search"/>
+                    </div>
+                </h:form>
                 <div>
                     <!--TODO Picture slide-->
                 </div>
-                <table width="100%" cellpadding="25px">
+                <table style="padding: 50px;" width="100%" cellpadding="15px">
                     <tr>
-                        <td align="top" class="td-width">
+                        <td style="vertical-align: top;" class="td-width">
                             <div class="card">
                                 <div class="card-title">
                                     <p class="font-light" align="center">News</p>
@@ -44,15 +45,15 @@
                                 </div>
                             </div>
                         </td>
-                        <td align="top" class="td-width">
+                        <td style="vertical-align: top;" class="td-width">
                             <div class="card">
                                 <div class="card-title">
                                     <p class="font-light" align="center">Top Rated Books</p>
                                 </div>
                                 <div class="card-body" align="left">
-                                    
+
                                     <!--TODO List to rated books-->
-                                    
+
                                     <h:link class="link">Link 1</h:link>
                                     <hr/>
                                     <h:link class="link">Link 2</h:link>
@@ -66,10 +67,6 @@
                                     <h:link class="link">Link 2</h:link>
                                     <hr/>
                                     <h:link class="link">Link 3</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 1</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 2</h:link>
                                 </div>
                             </div>
                         </td>

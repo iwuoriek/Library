@@ -7,14 +7,73 @@
         <title>The Library</title>
     </h:head>
     <h:body>
-        <ui:composition template="menuTemplate.xhtml">
-            <ui:define name="body">
-                <div align="center" class="content-div">
-                    <img src="resources/images/construction.PNG" width="600px" height="500px"/>
+        <ui:composition template="userMenuTemplate.xhtml">
+            <ui:define name="userbody">
+                <div class="content-div">
+                    <table width="100%">
+                        <tr>
+                            <td style="vertical-align: top; width: 255px;" align="left">
+                                <table>
+                                    <tr>
+                                        <td rowspan="3">
+                                            <div>
+                                                <img src="resources/images/images.png" style="width: 100px; height: 100px; border: 1px solid black;"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h:outputLabel class="font-dark">User's Name</h:outputLabel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h:outputLabel class="font-dark">Gender</h:outputLabel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h:outputLabel class="font-dark">Email</h:outputLabel>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="card" style="width: 250px; margin-top: 50px;">
+                                    <div align="center" class="card-title font-light">DASHBOARD</div>
+                                    <div class="card-body">
+                                        <h:link class="link">Personal Details</h:link>
+                                        <hr/>
+                                        <h:link class="link">Change Password</h:link>
+                                        <hr/>
+                                        <h:link class="link" outcome="login">Logout</h:link>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="vertical-align: top;" align="left">
+                                <div class="font-dark" style="margin-left: 20px;">
+                                    Search for books, authors, articles, etc.
+                                    <h:form>
+                                        <div>
+                                            <h:inputText class="searchField font-dark"/>
+                                        </div>
+                                        <div>
+                                            <h:button class="button font-light" value="Search"/>
+                                        </div>
+                                    </h:form>
+                                    <div style="margin-top: 10px; border: 1px solid #4296a2;">
+                                        <div align="center" class="card-title font-light">SHELVE</div>
+                                        <div class="card-body">
+                                            <h:link class="link">Saved books</h:link>
+                                            <hr/>
+                                            <h:link class="link">Saved books</h:link>
+                                            <hr/>
+                                            <h:link class="link">Saved books</h:link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </ui:define>
         </ui:composition>
     </h:body>
-</html>
 </html>
 
