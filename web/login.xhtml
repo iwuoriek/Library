@@ -5,7 +5,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>The Library</title>
-        
+        <script type="text/javascript">
+            function checkField(){
+                var field = document.getElementsById("email").value;
+                if(field === ""){
+                    alert("This field cannot be empty");
+                }
+            }
+        </script>
     </h:head>
     <h:body>
         <ui:composition template="menuTemplate.xhtml">
@@ -23,7 +30,7 @@
                                 <td align="left"><h:inputSecret class="textField" id="pword" value="#{loginBean.password}"/></td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Login" action="#{loginBean.authenticateUser}" style="width: 100%; margin-top: 10px;"/></td>
+                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Login" action="#{loginBean.userLogin}" onclick="checkField()" style="width: 100%; margin-top: 10px;"/></td>
                             </tr>
                             <tr>
                                 <td class="font-dark" align="center" colspan="2">
