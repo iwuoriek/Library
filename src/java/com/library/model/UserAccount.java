@@ -31,6 +31,8 @@ public class UserAccount implements java.io.Serializable{
     private String email;
     @Column(name="PASSWORD")
     private String password;
+    @Column(name="USER_ROLE")
+    private String userRole;
 
     /**
      * @return the id
@@ -100,5 +102,19 @@ public class UserAccount implements java.io.Serializable{
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the userRole
+     */
+    public String getUserRole() {
+        return userRole;
+    }
+
+    /**
+     * @param userRole the userRole to set
+     */
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }

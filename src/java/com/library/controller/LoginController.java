@@ -25,6 +25,7 @@ public class LoginController implements java.io.Serializable {
     private String outcome;
     private String linkName;
     private String imgSrc;
+
     @Autowired
     private LoginAuthenticationService loginService;
 
@@ -35,51 +36,60 @@ public class LoginController implements java.io.Serializable {
         UserAccount user = loginService.getUser(getEmail());
         if (user != null) {
             if (getPassword().compareTo(user.getPassword()) == 0) {
-                String sId = getEmail()+getPassword();
+                String sId = getEmail() + getPassword();
                 setSessionId(sId);
-                setEmail(null);
+                setLinkName("Logout");
+                setImgSrc("resources/images/logout.png");
                 return "userhome";
             }
         }
         return "login";
     }
-    
-    public String userLogout(){
+
+    public String userLogout() {
         setSessionId(null);
+        setEmail(null);
+        setLinkName("Login");
+        setImgSrc("resources/images/login.png");
         return "homepage";
     }
     
-    public String getLoginOutcome(){
-        String outcome;
-        if(getSessionId() != null){
-            outcome = userLogout();
+    public String actionOutCome(){
+        if(sessionId == null){
+            return userLogin();
         }else{
-            outcome = userLogin();
+            return userLogout();
         }
-        return outcome;
     }
-    
-    public String getLoginLink(){
-        String link;
-        if(getSessionId() != null){
-            link = "Logout";
-        }else{
-            link = "Login";
-        }
-        return link;
-    }
-    
-    public String getImgSrc(){
-        String src;
-        if(getSessionId() != null){
-            src = "resources/images/logout.png";
-        }else{
-            src = "resources/images/login.png";
-        }
-        return src;
-    }
-    
 
+//    public String getLoginOutcome(){
+//        String outcome = "login";
+//        if(getSessionId() != null){
+//            outcome = "homepage";
+//        }
+//        
+//        return outcome;
+//    }
+//    
+//    public String getLinkName(){
+//        String link;
+//        if(getSessionId() != null){
+//            link = "Logout";
+//        }else{
+//            link = "Login";
+//        }
+//        return link;
+//    }
+//    
+//    public String getImgSrc(){
+//        String src;
+//        if(getSessionId() != null){
+//            src = "resources/images/logout.png";
+//        }else{
+//            src = "resources/images/login.png";
+//        }
+//        return src;
+//    }
     /**
      * @return the email
      */
@@ -123,20 +133,6 @@ public class LoginController implements java.io.Serializable {
     }
 
     /**
-     * @return the outcome
-     */
-    public String getOutcome() {
-        return outcome;
-    }
-
-    /**
-     * @param outcome the outcome to set
-     */
-    public void setOutcome(String outcome) {
-        this.outcome = outcome;
-    }
-
-    /**
      * @return the linkName
      */
     public String getLinkName() {
@@ -148,6 +144,13 @@ public class LoginController implements java.io.Serializable {
      */
     public void setLinkName(String linkName) {
         this.linkName = linkName;
+    }
+
+    /**
+     * @return the imgSrc
+     */
+    public String getImgSrc() {
+        return imgSrc;
     }
 
     /**
