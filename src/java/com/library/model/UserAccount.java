@@ -23,16 +23,18 @@ public class UserAccount implements java.io.Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="ID")
     private int id;
-    @Column(name="FIRST_NAME")
+    @Column(name="FIRST_NAME", nullable=false)
     private String firstname;
-    @Column(name="LAST_NAME")
+    @Column(name="LAST_NAME", nullable =false)
     private String lastname;
-    @Column(name="EMAIL")
+    @Column(name="EMAIL", unique=true, nullable=false)
     private String email;
-    @Column(name="PASSWORD")
+    @Column(name="PASSWORD", nullable=false)
     private String password;
-    @Column(name="USER_ROLE")
+    @Column(name="USER_ROLE", nullable=false)
     private String userRole;
+    @Column(name="IMAGE")
+    private String imagePath;
 
     /**
      * @return the id
@@ -116,5 +118,19 @@ public class UserAccount implements java.io.Serializable{
      */
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    /**
+     * @return the imagePath
+     */
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * @param imagePath the imagePath to set
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

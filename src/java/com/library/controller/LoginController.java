@@ -5,10 +5,12 @@
  */
 package com.library.controller;
 
+import com.library.aspect.Util;
 import com.library.model.UserAccount;
 import com.library.service.LoginAuthenticationService;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -36,22 +38,22 @@ public class LoginController implements java.io.Serializable {
         UserAccount user = loginService.getUser(getEmail());
         if (user != null) {
             if (getPassword().compareTo(user.getPassword()) == 0) {
-                String sId = getEmail() + getPassword();
-                setSessionId(sId);
-                setLinkName("Logout");
-                setImgSrc("resources/images/logout.png");
-                return "userhome";
+                if (user.getUserRole().equals("NON-ADMIN")){
+                    HttpSession session = Util.getSession();
+                    session.setAttribute("user", user);
+                    return "userhome";
+                } else if (user.getUserRole().equals("ADMIN")){
+                    return "adminhome";
+                }
             }
         }
-        return "login";
+        return "login?faces-redirect=true";
     }
 
     public String userLogout() {
-        setSessionId(null);
-        setEmail(null);
-        setLinkName("Login");
-        setImgSrc("resources/images/login.png");
-        return "homepage";
+        HttpSession session = Util.getSession();
+        session.invalidate();
+        return "homepage?faces-redirect=true";
     }
     
     public String actionOutCome(){

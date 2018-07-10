@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,7 +35,7 @@
                                 <h:link class="link" outcome="viewbooks">View Our Books</h:link>
                                 <h:link class="link" outcome="registration" disabled="false">Register With Us</h:link>
                                 <h:link class="link" outcome="aboutus">About us</h:link>
-                                <h:link class="link" outcome="#{loginBean.loginOutcome}">#{loginBean.loginLink} <img src="#{loginBean.imgSrc}" style="width: 20px; height: 20px;"/></h:link>
+                                <h:link class="link" outcome="login">Login <img src="resources/images/login.png" style="width: 20px; height: 20px;"/></h:link>
                             </nav>
                         </td>
                     </tr>

@@ -10,7 +10,14 @@
         <ui:composition template="menuTemplate.xhtml">
             <ui:define name="body">
                 <div align="center" class="content-div">
-                    <img src="resources/images/construction.PNG" width="600px" height="500px"/>
+                    <!--<img src="resources/images/construction.PNG" width="600px" height="500px"/>-->
+                    <h:form enctype="multipart/form-data">
+                        <h:inputFile value="#{upload.uploadedFile}"/>
+                        <hr/>
+                        <h:commandButton value="Submit" action="#{upload.upload()}"/>
+                        <hr/>
+                        <h:outputLabel value="#{upload.text}"/>
+                    </h:form>
                 </div>
             </ui:define>
         </ui:composition>

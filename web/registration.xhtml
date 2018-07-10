@@ -2,10 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>The Library</title>
-        
+
     </h:head>
     <h:body>
         <ui:composition template="menuTemplate.xhtml">
@@ -17,33 +18,38 @@
                         <table>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="fname" value="#{registerBean.firstname}"/></td>
+                                <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="lname" value="#{registerBean.lastname}"/></td>
+                                <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="email" value="#{registerBean.email}"/></td>
+                                <td align="left">
+                                    <f:ajax event="valueChange" render="errorMessage">
+                                    <h:inputText class="textField" id="email" value="#{userBean.email}" validator="#{userBean.validateEmail}" required="true"/>
+                                    <h:message for="email" id="errorMessage" style="color: red;"/>
+                                    </f:ajax>
+                                </td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="pword">Password<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputSecret class="textField" id="pword" value="#{registerBean.password}"/></td>
+                                <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}"/></td>
                             </tr>
                             <tr>
                                 <td align="right"><h:outputLabel class="label font-dark" for="cpword">Confirm Password<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputSecret class="textField" id="cpword" value="#{registerBean.confirmPassword}"/></td>
+                                <td align="left"><h:inputSecret class="textField" id="cpword" value="#{userBean.confirmPassword}"/></td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" action="#{registerBean.registerUser}" style="width: 100%; margin-top: 10px;"/></td>
+                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" action="#{userBean.registerUser}" style="width: 100%; margin-top: 10px;"/></td>
                             </tr>
                             <tr>
                                 <td class="font-dark" align="center" colspan="2">
                                     Already have an account? <h:link class="link warning" outcome="login"> Click to login.</h:link>
                                 </td>
                             </tr>
-                            
+
                         </table>
                     </h:form>
                 </div>

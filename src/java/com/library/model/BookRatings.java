@@ -6,10 +6,8 @@
 package com.library.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -19,24 +17,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Ratings")
 public class BookRatings implements java.io.Serializable{
-    @Id
-    @Column(name="ID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    @EmbeddedId
+    private BookRatingsId id;
     @Column(name="RATING")
     private int rating;
 
     /**
      * @return the id
      */
-    public int getId() {
+    public BookRatingsId getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(BookRatingsId id) {
         this.id = id;
     }
 

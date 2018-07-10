@@ -6,6 +6,7 @@
 package com.library.service;
 
 import com.library.model.UserAccount;
+import java.util.Map;
 
 /**
  *
@@ -15,4 +16,8 @@ public interface UserAccountService {
     public String registerUser(UserAccount user);
     
     public String updateUserInfo(UserAccount user);
+    
+    public Map<String, UserAccount> getUsers();
+    
+    public UserAccount getUser(String email);
 }

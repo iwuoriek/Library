@@ -31,7 +31,9 @@ public class Books implements java.io.Serializable{
     private Authors author;
     @Column(name="AVE_RATING")
     private double rating;
-
+    @Column(name="LOCATION")
+    private String location;
+    
     /**
      * @return the bookId
      */
@@ -100,5 +102,19 @@ public class Books implements java.io.Serializable{
      */
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    /**
+     * @return the location
+     */
+    public String getLocation() {
+        return location;
+    }
+
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
