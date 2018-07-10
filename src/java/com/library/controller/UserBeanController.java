@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -33,6 +34,7 @@ public class UserBeanController implements java.io.Serializable {
     private String confirmPassword;
     private String imagePath;
     private String userRole;
+    private Part imageFile;
     @Autowired
     private UserAccountService userService;
 
@@ -46,7 +48,7 @@ public class UserBeanController implements java.io.Serializable {
         user.setEmail(getEmail());
         user.setPassword(getPassword());
         user.setUserRole("NON-ADMIN");
-
+        System.out.println("Running method registerUser()");
         String status = userService.registerUser(user);
         if (status.equals("success")) {
             return "login";
@@ -61,27 +63,38 @@ public class UserBeanController implements java.io.Serializable {
         user.setLastname(getLastname());
         user.setEmail(getEmail());
         user.setPassword(getPassword());
-        user.setImagePath(getImagePath());
+        user.setImagePath(new com.library.aspect.FileUploader().uploadFile(getImageFile()));
+        user.setUserRole(getUserRole());
+        System.out.println("User role: "+getUserRole());
         userService.updateUserInfo(user);
+        System.out.println("Running method updateUser()");
         return "userhome";
     }
     
-    public String getUserDetails(){
+    public String printUserDetails(){
         HttpSession session = Util.getSession();
+        System.out.println("HSession id: "+session.getId());
         UserAccount user = (UserAccount) session.getAttribute("user");
         setId(user.getId());
         setFirstname(user.getFirstname());
         setLastname(user.getLastname());
         setEmail(user.getEmail());
         setPassword(user.getPassword());
-        setImagePath(user.getImagePath());
+        setUserRole(user.getUserRole());
+        System.out.println("Running method printUserDetails()");
         return "userDetails";
+    }
+    
+    public String changePassword(){
+        System.out.println("Running method changePassword()");
+        return "userhome";
     }
 
     public void validateEmail(FacesContext context, UIComponent comp, Object value) throws ValidatorException, NullPointerException {
         String email_ = value.toString();
         Map<String, UserAccount> userStore = userService.getUsers();
         UserAccount user = userStore.get(email_);
+        System.out.println("Running method validateEmail()");
         if (user != null) {
             FacesMessage message = new FacesMessage();
             message.setSummary("This email is taken");
@@ -201,5 +214,19 @@ public class UserBeanController implements java.io.Serializable {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the imageFile
+     */
+    public Part getImageFile() {
+        return imageFile;
+    }
+
+    /**
+     * @param imageFile the imageFile to set
+     */
+    public void setImageFile(Part imageFile) {
+        this.imageFile = imageFile;
     }
 }

@@ -8,7 +8,7 @@ package com.library.controller;
 import com.library.aspect.Util;
 import com.library.model.UserAccount;
 import com.library.service.LoginAuthenticationService;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +41,9 @@ public class LoginController implements java.io.Serializable {
                 if (user.getUserRole().equals("NON-ADMIN")){
                     HttpSession session = Util.getSession();
                     session.setAttribute("user", user);
+                    System.out.println("Running method userLogin()");
+                    System.out.println("Session ID: "+session.getId());
+                    System.out.println("User: "+user.toString());
                     return "userhome";
                 } else if (user.getUserRole().equals("ADMIN")){
                     return "adminhome";
@@ -53,7 +56,8 @@ public class LoginController implements java.io.Serializable {
     public String userLogout() {
         HttpSession session = Util.getSession();
         session.invalidate();
-        return "homepage?faces-redirect=true";
+        System.out.println("Running method userLogout()");
+        return "login?faces-redirect=true";
     }
     
     public String actionOutCome(){

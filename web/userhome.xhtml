@@ -21,28 +21,23 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <h:outputLabel class="font-dark">#{registerBean.firstname} #{registerBean.lastname}</h:outputLabel>
+                                            <h:outputLabel class="font-dark">#{userBean.firstname} #{userBean.lastname}</h:outputLabel>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h:outputLabel class="font-dark">Gender</h:outputLabel>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h:outputLabel class="font-dark">#{registerBean.email}</h:outputLabel>
+                                            <h:outputLabel class="font-dark">#{userBean.email}</h:outputLabel>
                                         </td>
                                     </tr>
                                 </table>
                                 <div style="border: 1px solid #4296a2; width: 250px; margin-top: 50px;">
                                     <div align="center" class="card-title font-light">DASHBOARD</div>
                                     <div class="card-body">
-                                        <h:link class="link" outcome="#{userBean.userDetails}">Personal Details</h:link>
+                                        <h:link class="link" outcome="#{userBean.printUserDetails()}">Personal Details</h:link>
                                         <hr/>
-                                        <h:link class="link">Change Password</h:link>
+                                        <h:link class="link" outcome="#{userBean.changePassword()}">Change Password</h:link>
                                         <hr/>
-                                        <h:link class="link" outcome="login">Logout</h:link>
+                                        <h:link class="link" outcome="#{loginBean.userLogout()}">Logout</h:link>
                                     </div>
                                 </div>
                             </td>

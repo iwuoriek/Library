@@ -14,7 +14,8 @@ import javax.servlet.http.HttpSession;
  */
 public class Util {
     public static HttpSession getSession(){
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
         return session;
     }
 }
