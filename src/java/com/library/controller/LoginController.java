@@ -5,12 +5,10 @@
  */
 package com.library.controller;
 
-import com.library.aspect.Util;
 import com.library.model.UserAccount;
 import com.library.service.LoginAuthenticationService;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -19,150 +17,50 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Named("loginBean")
 @SessionScoped
-public class LoginController implements java.io.Serializable {
+public class LoginController extends User implements java.io.Serializable {
 
-    private String email;
-    private String password;
-    private String sessionId;
-    private String outcome;
-    private String linkName;
-    private String imgSrc;
-
+    private String loginMessage;
     @Autowired
     private LoginAuthenticationService loginService;
 
     public LoginController() {
     }
 
-    public String userLogin() {
+    public String doLogin() {
         UserAccount user = loginService.getUser(getEmail());
         if (user != null) {
             if (getPassword().compareTo(user.getPassword()) == 0) {
+                if(user.getImagePath()!= null){
+                    this.setImagePath(user.getImagePath());
+                } else {
+                    this.setImagePath("resources/images/images.png");
+                }
                 if (user.getUserRole().equals("NON-ADMIN")){
-                    HttpSession session = Util.getSession();
-                    session.setAttribute("user", user);
-                    System.out.println("Running method userLogin()");
-                    System.out.println("Session ID: "+session.getId());
-                    System.out.println("User: "+user.toString());
-                    return "userhome";
+                    return "userhome?faces-redirect=true";
                 } else if (user.getUserRole().equals("ADMIN")){
-                    return "adminhome";
+                    return "adminhome?faces-redirect=true";
                 }
             }
         }
+        setLoginMessage("Incorrect username or password!");
+        return "login";
+    }
+
+    public String doLogout() {
         return "login?faces-redirect=true";
     }
 
-    public String userLogout() {
-        HttpSession session = Util.getSession();
-        session.invalidate();
-        System.out.println("Running method userLogout()");
-        return "login?faces-redirect=true";
-    }
-    
-    public String actionOutCome(){
-        if(sessionId == null){
-            return userLogin();
-        }else{
-            return userLogout();
-        }
-    }
-
-//    public String getLoginOutcome(){
-//        String outcome = "login";
-//        if(getSessionId() != null){
-//            outcome = "homepage";
-//        }
-//        
-//        return outcome;
-//    }
-//    
-//    public String getLinkName(){
-//        String link;
-//        if(getSessionId() != null){
-//            link = "Logout";
-//        }else{
-//            link = "Login";
-//        }
-//        return link;
-//    }
-//    
-//    public String getImgSrc(){
-//        String src;
-//        if(getSessionId() != null){
-//            src = "resources/images/logout.png";
-//        }else{
-//            src = "resources/images/login.png";
-//        }
-//        return src;
-//    }
     /**
-     * @return the email
+     * @return the loginMessage
      */
-    public String getEmail() {
-        return email;
+    public String getLoginMessage() {
+        return loginMessage;
     }
 
     /**
-     * @param email the email to set
+     * @param loginMessage the loginMessage to set
      */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * @return the sessionId
-     */
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    /**
-     * @param sessionId the sessionId to set
-     */
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    /**
-     * @return the linkName
-     */
-    public String getLinkName() {
-        return linkName;
-    }
-
-    /**
-     * @param linkName the linkName to set
-     */
-    public void setLinkName(String linkName) {
-        this.linkName = linkName;
-    }
-
-    /**
-     * @return the imgSrc
-     */
-    public String getImgSrc() {
-        return imgSrc;
-    }
-
-    /**
-     * @param imgSrc the imgSrc to set
-     */
-    public void setImgSrc(String imgSrc) {
-        this.imgSrc = imgSrc;
+    public void setLoginMessage(String loginMessage) {
+        this.loginMessage = loginMessage;
     }
 }

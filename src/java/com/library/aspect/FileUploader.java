@@ -19,19 +19,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class FileUploader {
     private static final String ROOT = System.getProperty("user.home");
-    public String uploadFile(Part file){
-        String filePath = null;
-        InputStream in;
-        OutputStream out;
-//        File f;
+    
+    public String uploadProfilePic(Part file, String email){
+        String newPath = null;
+        try{
+            String fileName = email+".png";
+            String filePath = ROOT+"\\Documents\\NetBeansProjects\\Library\\web\\Upload\\To\\"+fileName;
+            File f = new File(filePath);
+            try (InputStream in = file.getInputStream(); OutputStream out = new java.io.FileOutputStream(f);) {
+                int c;
+                newPath = "Upload/To/"+fileName;
+                while((c = in.read())!= -1){
+                    out.write(c);
+                }
+            }
+        }catch (IOException e){
+            System.out.println("=========IOException: "+e);
+        }
+        return newPath;
+    }
+    
+    public String uploadBook(Part file){
+        String newPath = null;
         try{
             String fileName = file.getSubmittedFileName();
-            filePath = ROOT+"\\Upload\\To\\"+fileName;
+            String filePath = ROOT+"\\Documents\\NetBeansProjects\\Library\\web\\Upload\\To\\"+fileName;
             File f = new File(filePath);
-            in = file.getInputStream();
-            out = new java.io.FileOutputStream(f);
+            InputStream in = file.getInputStream();
+            OutputStream out = new java.io.FileOutputStream(f);
             int c;
-            System.out.println("File Name: "+file.getSubmittedFileName()+", File Size: "+file.getSize()+", Content Type: "+file.getContentType()+", File Path: "+filePath);
+            newPath = "Upload/To/"+fileName;
             while((c = in.read())!= -1){
                 out.write(c);
             }
@@ -40,7 +57,28 @@ public class FileUploader {
         }catch (IOException e){
             System.out.println("=========IOException: "+e);
         }
-        return filePath;
+        return newPath;
+    }
+    
+    public String uploadBookCover(Part file){
+        String newPath = null;
+        try{
+            String fileName = file.getSubmittedFileName();
+            String filePath = ROOT+"\\Documents\\NetBeansProjects\\Library\\web\\Upload\\To\\"+fileName;
+            File f = new File(filePath);
+            InputStream in = file.getInputStream();
+            OutputStream out = new java.io.FileOutputStream(f);
+            int c;
+            newPath = "Upload/To/"+fileName;
+            while((c = in.read())!= -1){
+                out.write(c);
+            }
+            in.close();
+            out.close();
+        }catch (IOException e){
+            System.out.println("=========IOException: "+e);
+        }
+        return newPath;
     }
     
     public void downloadFile(){

@@ -1,80 +1,98 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
     </h:head>
     <h:body>
-        <ui:composition template="menuTemplate.xhtml">
-            <ui:define name="body">
-                <div class="content-div">
-                    <table width="100%">
-                        <tr>
-                            <td style="vertical-align: top; width: 255px;" align="left">
-                                <table>
-                                    <tr>
-                                        <td rowspan="3">
-                                            <div>
-                                                <img src="resources/images/images.png" style="width: 100px; height: 100px; border: 1px solid black;"/>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h:outputLabel class="font-dark">#{userBean.firstname} #{userBean.lastname}</h:outputLabel>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h:outputLabel class="font-dark">#{userBean.email}</h:outputLabel>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div style="border: 1px solid #4296a2; width: 250px; margin-top: 50px;">
-                                    <div align="center" class="card-title font-light">DASHBOARD</div>
+        <div>
+            <div style="box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);">
+                <table width="100%" >
+                    <tr>
+                        <td align="left" width="40%">
+                            <h:link outcome="homepage" style="font-family: calibri; font-size: 35px; color: #4296a2; text-decoration: none; margin-left: 20px;">
+                                THE LIBRARY
+                            </h:link>
+                        </td>
+                        <td align="right" width="60%">
+                            <nav>
+                                <h:link class="link" >Logout <img src="resources/images/logout.png" style="width: 20px; height: 20px;"/></h:link>
+                            </nav>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content-div">
+                <table width="100%">
+                    <tr>
+                        <td style="vertical-align: top; width: 255px;" align="left">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <div>
+                                            <img src="#{loginBean.imagePath}" style="width: 100px; height: 100px; border: 1px solid black;"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h:outputLabel class="font-dark">#{loginBean.firstname} #{loginBean.lastname}</h:outputLabel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel class="font-dark">#{loginBean.email}</h:outputLabel>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="border: 1px solid #4296a2; width: 250px; margin-top: 50px;">
+                                <div align="center" class="card-title font-light">DASHBOARD</div>
+                                <div class="card-body">
+                                    <h:link class="link" outcome="#{userBean.printUserDetails()}">Personal Details</h:link>
+                                    <hr/>
+                                    <h:link class="link" outcome="#{userBean.changePassword()}">Change Password</h:link>
+                                    <hr/>
+                                    <h:link class="link" outcome="#{loginBean.doLogout()}">Logout</h:link>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="vertical-align: top;" align="left">
+                            <div class="font-dark" style="margin-left: 20px;">
+                                Search for books, authors, articles, etc.
+                                <h:form>
+                                    <div>
+                                        <h:inputText class="searchField font-dark"/>
+                                    </div>
+                                    <div>
+                                        <h:button class="button font-light" value="Search"/>
+                                    </div>
+                                </h:form>
+                                <div style="margin-top: 10px; border: 1px solid #4296a2;">
+                                    <div align="center" class="card-title font-light">SHELVE</div>
                                     <div class="card-body">
-                                        <h:link class="link" outcome="#{userBean.printUserDetails()}">Personal Details</h:link>
+                                        <h:link class="link">Link</h:link>
                                         <hr/>
-                                        <h:link class="link" outcome="#{userBean.changePassword()}">Change Password</h:link>
+                                        <h:link class="link">Link</h:link>
                                         <hr/>
-                                        <h:link class="link" outcome="#{loginBean.userLogout()}">Logout</h:link>
+                                        <h:link class="link">Link</h:link>
+                                        <hr/>
+                                        <h:link class="link">Link</h:link>
+                                        <hr/>
+                                        <h:link class="link">Link</h:link>
+                                        <hr/>
+                                        <h:link class="link">Link</h:link>
                                     </div>
                                 </div>
-                            </td>
-                            <td style="vertical-align: top;" align="left">
-                                <div class="font-dark" style="margin-left: 20px;">
-                                    Search for books, authors, articles, etc.
-                                    <h:form>
-                                        <div>
-                                            <h:inputText class="searchField font-dark"/>
-                                        </div>
-                                        <div>
-                                            <h:button class="button font-light" value="Search"/>
-                                        </div>
-                                    </h:form>
-                                    <div style="margin-top: 10px; border: 1px solid #4296a2;">
-                                        <div align="center" class="card-title font-light">SHELVE</div>
-                                        <div class="card-body">
-                                            <h:link class="link">Link</h:link>
-                                            <hr/>
-                                            <h:link class="link">Link</h:link>
-                                            <hr/>
-                                            <h:link class="link">Link</h:link>
-                                            <hr/>
-                                            <h:link class="link">Link</h:link>
-                                            <hr/>
-                                            <h:link class="link">Link</h:link>
-                                            <hr/>
-                                            <h:link class="link">Link</h:link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </ui:define>
-        </ui:composition>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="background-color: #4296a2; height: 50px; padding: 5px;">
+                <p class="font-light" align="center">Created by Kelechi Iwuorie. 2018</p>
+            </div>
+        </div>
     </h:body>
 </html>
 

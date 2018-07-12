@@ -7,6 +7,7 @@ package com.library.aspect;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -15,7 +16,14 @@ import javax.servlet.http.HttpSession;
 public class Util {
     public static HttpSession getSession(){
         FacesContext context = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession session = (HttpSession) request.getSession(false);
         return session;
     }
+    
+//    public static HttpServletRequest getRequest(){
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+//        return request;
+//    }
 }

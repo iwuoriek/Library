@@ -5,7 +5,7 @@
  */
 package com.library.controller;
 
-import com.library.aspect.Util;
+import com.library.aspect.FileUploader;
 import com.library.model.UserAccount;
 import com.library.service.UserAccountService;
 import java.util.Map;
@@ -15,7 +15,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,20 +24,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Named("userBean")
 @RequestScoped
-public class UserBeanController implements java.io.Serializable {
-    private int id;
-    private String firstname;
-    private String lastname;
-    private String email;
-    private String password;
-    private String confirmPassword;
-    private String imagePath;
-    private String userRole;
+public class UserController extends User implements java.io.Serializable {
     private Part imageFile;
     @Autowired
     private UserAccountService userService;
 
-    public UserBeanController() {
+    public UserController() {
     }
 
     public String registerUser() {
@@ -63,7 +54,7 @@ public class UserBeanController implements java.io.Serializable {
         user.setLastname(getLastname());
         user.setEmail(getEmail());
         user.setPassword(getPassword());
-        user.setImagePath(new com.library.aspect.FileUploader().uploadFile(getImageFile()));
+        user.setImagePath(new FileUploader().uploadProfilePic(getImageFile(), getEmail()));
         user.setUserRole(getUserRole());
         System.out.println("User role: "+getUserRole());
         userService.updateUserInfo(user);
@@ -71,22 +62,11 @@ public class UserBeanController implements java.io.Serializable {
         return "userhome";
     }
     
-    public String printUserDetails(){
-        HttpSession session = Util.getSession();
-        System.out.println("HSession id: "+session.getId());
-        UserAccount user = (UserAccount) session.getAttribute("user");
-        setId(user.getId());
-        setFirstname(user.getFirstname());
-        setLastname(user.getLastname());
-        setEmail(user.getEmail());
-        setPassword(user.getPassword());
-        setUserRole(user.getUserRole());
-        System.out.println("Running method printUserDetails()");
+    public String getUserDetails(){
         return "userDetails";
     }
     
     public String changePassword(){
-        System.out.println("Running method changePassword()");
         return "userhome";
     }
 
@@ -102,118 +82,6 @@ public class UserBeanController implements java.io.Serializable {
             throw new ValidatorException(message);
         }
 
-    }
-
-    /**
-     * @return the firstname
-     */
-    public String getFirstname() {
-        return firstname;
-    }
-
-    /**
-     * @param firstname the firstname to set
-     */
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    /**
-     * @return the lastname
-     */
-    public String getLastname() {
-        return lastname;
-    }
-
-    /**
-     * @param lastname the lastname to set
-     */
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * @return the confirmPassword
-     */
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    /**
-     * @param confirmPassword the confirmPassword to set
-     */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    /**
-     * @return the imagePath
-     */
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    /**
-     * @param imagePath the imagePath to set
-     */
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    /**
-     * @return the userRole
-     */
-    public String getUserRole() {
-        return userRole;
-    }
-
-    /**
-     * @param userRole the userRole to set
-     */
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

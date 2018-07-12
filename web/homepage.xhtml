@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
         <style type="text/css">
             .td-width{
@@ -13,67 +14,87 @@
         </style>
     </h:head>
     <h:body>
-        <ui:composition template="menuTemplate.xhtml">
-            <ui:define name="body">
-                <h3 class="font-dark" style="margin-left:50px;">Search for books, authors, articles, etc.</h3>
-                <h:form>
-                    <div class="content-div" style="margin-top: 10px; margin-bottom: 10px;">
-                        <h:inputText class="searchField font-dark"/>
-                    </div>
-                    <div class="content-div" style="margin-top: 10px; margin-bottom: 10px;">
-                        <h:button class="button font-light" value="Search"/>
-                    </div>
-                </h:form>
-                <div>
-                    <!--TODO Picture slide-->
-                </div>
-                <table style="padding: 50px;" width="100%" cellpadding="15px">
+        <div>
+            <div style="box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);">
+                <table width="100%" >
                     <tr>
-                        <td style="vertical-align: top;" class="td-width">
-                            <div class="card">
-                                <div class="card-title">
-                                    <p class="font-light" align="center">News</p>
-                                </div>
-                                <div class="card-body" align="left">
-                                    <p class="font-dark">Welcome to <span class="link">THE LIBRARY</span>.</p>
-                                    <p class="font-dark">We provide you with a variety of books, all at the click of a button.</p>
-                                    <p class="font-dark">The need to leave your comfort zone has been eliminated. Want to know more? Navigate to the <h:link class="link" outcome="aboutus">ABOUT US PAGE</h:link></p>
-                                    <hr/>
-                                    <p class="font-dark">Monitor this page for updates, news and recommendations.</p>
-                                    <hr/>
-                                    <h:link class="link">Link 2</h:link>
-                                </div>
-                            </div>
+                        <td align="left" width="40%">
+                            <h:link outcome="homepage" style="font-family: calibri; font-size: 35px; color: #4296a2; text-decoration: none; margin-left: 20px;">
+                                THE LIBRARY
+                            </h:link>
                         </td>
-                        <td style="vertical-align: top;" class="td-width">
-                            <div class="card">
-                                <div class="card-title">
-                                    <p class="font-light" align="center">Top Rated Books</p>
-                                </div>
-                                <div class="card-body" align="left">
-
-                                    <!--TODO List to rated books-->
-
-                                    <h:link class="link">Link 1</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 2</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 3</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 4</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 1</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 2</h:link>
-                                    <hr/>
-                                    <h:link class="link">Link 3</h:link>
-                                </div>
-                            </div>
+                        <td align="right" width="60%">
+                            <nav>
+                                <h:link class="link" outcome="viewbooks">View Our Books</h:link>
+                                <h:link class="link" outcome="registration" disabled="false">Register With Us</h:link>
+                                <h:link class="link" outcome="aboutus">About us</h:link>
+                                <h:link class="link" outcome="login">Login <img src="resources/images/login.png" style="width: 20px; height: 20px;"/></h:link>
+                            </nav>
                         </td>
                     </tr>
                 </table>
-            </ui:define>
-        </ui:composition>
+            </div>
+            <h3 class="font-dark" style="margin-left:50px;">Search for books, authors, articles, etc.</h3>
+            <h:form>
+                <div class="content-div" style="margin-top: 10px; margin-bottom: 10px;">
+                    <h:inputText class="searchField font-dark"/>
+                </div>
+                <div class="content-div" style="margin-top: 10px; margin-bottom: 10px;">
+                    <h:button class="button font-light" value="Search"/>
+                </div>
+            </h:form>
+            <div>
+                <!--TODO Picture slide-->
+            </div>
+            <table style="padding: 50px;" width="100%" cellpadding="15px">
+                <tr>
+                    <td style="vertical-align: top;" class="td-width">
+                        <div class="card">
+                            <div class="card-title">
+                                <p class="font-light" align="center">News</p>
+                            </div>
+                            <div class="card-body" align="left">
+                                <p class="font-dark">Welcome to <span class="link">THE LIBRARY</span>.</p>
+                                <p class="font-dark">We provide you with a variety of books, all at the click of a button.</p>
+                                <p class="font-dark">The need to leave your comfort zone has been eliminated. Want to know more? Navigate to the <h:link class="link" outcome="aboutus">ABOUT US PAGE</h:link></p>
+                                <hr/>
+                                <p class="font-dark">Monitor this page for updates, news and recommendations.</p>
+                                <hr/>
+                                <h:link class="link">Link 2</h:link>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="vertical-align: top;" class="td-width">
+                        <div class="card">
+                            <div class="card-title">
+                                <p class="font-light" align="center">Top Rated Books</p>
+                            </div>
+                            <div class="card-body" align="left">
+
+                                <!--TODO List to rated books-->
+
+                                <h:link class="link">Link 1</h:link>
+                                <hr/>
+                                <h:link class="link">Link 2</h:link>
+                                <hr/>
+                                <h:link class="link">Link 3</h:link>
+                                <hr/>
+                                <h:link class="link">Link 4</h:link>
+                                <hr/>
+                                <h:link class="link">Link 1</h:link>
+                                <hr/>
+                                <h:link class="link">Link 2</h:link>
+                                <hr/>
+                                <h:link class="link">Link 3</h:link>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div style="background-color: #4296a2; height: 50px; padding: 5px;">
+                <p class="font-light" align="center">Created by Kelechi Iwuorie. 2018</p>
+            </div>
+        </div>
     </h:body>
 </html>
 
