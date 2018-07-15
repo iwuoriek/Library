@@ -31,24 +31,24 @@
                     <table>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="pword">Profile Picture<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputFile class="textField" id="pic" value="#{userBean.imageFile}"/></td>
+                            <td align="left"><h:inputFile class="textField" id="pic" value="#{loginBean.imageFile}"/></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="pword">USER ID<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="id" value="#{userBean.id}" readonly="true"/></td>
+                            <td align="left"><h:inputText class="textField" id="id" value="#{loginBean.id}" readonly="true"/></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}"/></td>
+                            <td align="left"><h:inputText class="textField" id="fname" value="#{loginBean.firstname}"/></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}"/></td>
+                            <td align="left"><h:inputText class="textField" id="lname" value="#{loginBean.lastname}"/></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
                             <td align="left">
-                                <h:inputText class="textField" id="email" value="#{userBean.email}" readonly="true"/>
+                                <h:inputText class="textField" id="email" value="#{loginBean.email}" readonly="true"/>
                             </td>
                         </tr>
                         <tr>

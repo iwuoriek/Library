@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/web/userhome.xhtml</file>
-            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/controller/UserController.java</file>
-            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/controller/LoginController.java</file>
-            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/web/viewbooks.xhtml</file>
-            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/controller/User.java</file>
+            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/web/adminhome.xhtml</file>
+            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/web/resources/css/default.css</file>
         </group>
     </open-files>
 </project-private>

@@ -29,12 +29,13 @@ public class LoginController extends User implements java.io.Serializable {
     public String doLogin() {
         UserAccount user = loginService.getUser(getEmail());
         if (user != null) {
+            System.out.println("USER-ROLE: "+user.getUserRole());
             if (getPassword().compareTo(user.getPassword()) == 0) {
-                if(user.getImagePath()!= null){
-                    this.setImagePath(user.getImagePath());
-                } else {
-                    this.setImagePath("resources/images/images.png");
-                }
+//                if(user.getImagePath()!= null){
+//                    this.setImagePath(user.getImagePath());
+//                } else {
+//                    this.setImagePath("resources/images/images.png");
+//                }
                 if (user.getUserRole().equals("NON-ADMIN")){
                     return "userhome?faces-redirect=true";
                 } else if (user.getUserRole().equals("ADMIN")){

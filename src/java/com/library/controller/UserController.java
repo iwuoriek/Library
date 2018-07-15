@@ -56,15 +56,10 @@ public class UserController extends User implements java.io.Serializable {
         user.setPassword(getPassword());
         user.setImagePath(new FileUploader().uploadProfilePic(getImageFile(), getEmail()));
         user.setUserRole(getUserRole());
-        System.out.println("User role: "+getUserRole());
         userService.updateUserInfo(user);
-        System.out.println("Running method updateUser()");
         return "userhome";
     }
     
-    public String getUserDetails(){
-        return "userDetails";
-    }
     
     public String changePassword(){
         return "userhome";

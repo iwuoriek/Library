@@ -5,10 +5,37 @@
  */
 package com.library.controller;
 
+import com.library.model.Authors;
+import com.library.model.Books;
+import java.util.List;
+import javax.inject.Named;
+
 /**
  *
  * @author Kelechi
  */
-public class BookController {
+@Named("book")
+public class BookController extends BooksAndAuthors implements java.io.Serializable{
+    
+    private String bookTitle;
+    private String genre;
+    private String description;
+    private String rating;
+    public String addBook(){
+        return "";
+    }
+    
+    public String updateBook(){
+        return "";
+    }
+    
+    public String deleteBook(){
+        return "";
+    }
+    
+//    public List<Books> getBooks(){
+//        
+//    }
+    
     
 }

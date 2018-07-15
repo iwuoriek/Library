@@ -24,15 +24,15 @@ public class Books implements java.io.Serializable{
     private String bookId;
     @Column(name="BOOK_TITLE")
     private String bookTitle;
-    @Column(name="DESCRIPTION")
-    private String description;
+    @Column(name="GENRE")
+    private String genre;
     @ManyToOne
     @JoinColumn(name="AUTHOR_ID")
     private Authors author;
     @Column(name="AVE_RATING")
     private double rating;
-    @Column(name="LOCATION")
-    private String location;
+    @Column(name="DESCRIPTION")
+    private String description;
     
     /**
      * @return the bookId
@@ -63,17 +63,17 @@ public class Books implements java.io.Serializable{
     }
 
     /**
-     * @return the description
+     * @return the genre
      */
-    public String getDescription() {
-        return description;
+    public String getGenre() {
+        return genre;
     }
 
     /**
-     * @param description the description to set
+     * @param genre the genre to set
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     /**
@@ -105,16 +105,16 @@ public class Books implements java.io.Serializable{
     }
 
     /**
-     * @return the location
+     * @return the description
      */
-    public String getLocation() {
-        return location;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param location the location to set
+     * @param description the description to set
      */
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

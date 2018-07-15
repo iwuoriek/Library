@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
+        <title>Administrator/Details</title>
+        <style>
+            #td1{
+                border-bottom: 1px solid #4296a2;
+                padding: 10px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div>
+            <div style="box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);">
+                <table width="100%" >
+                    <tr>
+                        <td align="left" width="40%">
+                            <h:link outcome="homepage" style="font-family: calibri; font-size: 35px; color: #4296a2; text-decoration: none; margin-left: 20px;">
+                                THE LIBRARY
+                            </h:link>
+                        </td>
+                        <td align="right" width="60%">
+                            <nav>
+                                <h:link class="link" >Logout <img src="resources/images/logout.png" style="width: 20px; height: 20px;"/></h:link>
+                            </nav>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content-div">
+                <table width="100%">
+                    <tr>
+                        <td style="vertical-align: top; width: 30%;" align="left">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <div>
+                                            <h:graphicImage url="resources/images/images.png" style="width: 125px; height: 150px; border: 1px solid black;"/>
+                                            <!--<img src="resources/images/images.png" style="width: 125px; height: 150px; border: 1px solid black;"/>-->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h:outputLabel class="font-dark">NAME: ADMIN NAME</h:outputLabel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel class="font-dark">EMAIL: ADMIN@LIBRARY>COM</h:outputLabel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel class="font-dark">ROLE: ADMINISTRATOR</h:outputLabel>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
+                                <tr>
+                                    <td id="td1"><h:link class="link  font-link" outcome="adminhome">DASHBOARD</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1" class="card-title"><h:link class="link font-light" outcome="admindetails">Personal Details</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="#">Change Password</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="newbook">New Book</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="#">Update Book</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="#{loginBean.doLogout()}">Logout</h:link></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="vertical-align: top;" align="left">
+                            <div class="font-dark" style="margin-left: 20px;">
+                                Search for books, authors, articles, etc.
+                                <h:form>
+                                 
+                                </h:form>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="background-color: #4296a2; height: 50px; padding: 5px;">
+                <p class="font-light" align="center">Created by Kelechi Iwuorie. 2018</p>
+            </div>
+        </div>
+    </h:body>
+</html>
+
