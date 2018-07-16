@@ -73,38 +73,24 @@
                                 <h:form>
                                     <table>
                                         <tr>
-                                            <td>Title</td>
-                                            <td><h:inputText class="textField" value="" style="margin-left: 10px; width: 550px;"/></td>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="id">User ID<span class="warning">*</span></h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="id" value="#{userBean.id}" readonly="true"/></td>
                                         </tr>
                                         <tr>
-                                            <td>Year Published</td>
-                                            <td>
-                                                <h:selectOneListbox class="textField">
-                                                  
-                                                </h:selectOneListbox>
-                                            </td> 
+                                            <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}"/></td>
                                         </tr>
                                         <tr>
-                                            <td>Genre</td>
-                                            <td><h:inputText class="textField" value=""/></td>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}"/></td>
                                         </tr>
                                         <tr>
-                                            <td>Author</td>
-                                            <td>
-                                                <h:selectOneListbox class="textField">
-                                                  
-                                                </h:selectOneListbox>
-                                            </td>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="email">Email</h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="email" value="#{userBean.email}" readonly="true"/></td>
                                         </tr>
                                         <tr>
-                                            <td>File</td>
-                                            <td>
-                                                <h:inputFile style="margin-left: 10px;"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Description</td>
-                                            <td><h:inputTextarea class="textField" value="" style="height: 150px; width: 450px;"/></td>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="pic">Profile Pic</h:outputLabel></td>
+                                            <td align="left"><h:inputFile class="textField" id="pic" value=""/></td>
                                         </tr>
                                     </table>
                                 </h:form>
