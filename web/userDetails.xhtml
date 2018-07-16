@@ -6,6 +6,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
+        <style>
+            #td1{
+                border-bottom: 1px solid #4296a2;
+                padding: 10px;
+            }
+        </style>
     </h:head>
     <h:body>
         <div>
@@ -20,38 +26,92 @@
                     </tr>
                 </table>
             </div>
-            <div align="center" style="margin: 50px; margin-left: 200px; margin-right: 200px; padding: 20px; border-radius: 30px; box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);">
-                <h2 align="center" style="font-size: 30px;" class="link">Personal Details</h2>
-                <h:form enctype="multipart/form-data">
-                    <table>
-                        <tr>
-                            <td align="right"><h:outputLabel class="label font-dark" for="pword">Profile Picture<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputFile class="textField" id="pic" value="#{loginBean.imageFile}"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right"><h:outputLabel class="label font-dark" for="pword">USER ID<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="id" value="#{loginBean.id}" readonly="true"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="fname" value="#{loginBean.firstname}"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="lname" value="#{loginBean.lastname}"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left">
-                                <h:inputText class="textField" id="email" value="#{loginBean.email}" readonly="true"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Update" action="#{userBean.updateUser}" style="width: 100%; margin-top: 10px;"/></td>
-                        </tr>
-
-                    </table>
-                </h:form>
+            <div class="content-div">
+                <table width="100%">
+                    <tr>
+                        <td style="vertical-align: top; width: 30%;" align="left">
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <div>
+                                            <h:graphicImage url="resources/images/images.png" style="width: 125px; height: 150px; border: 1px solid black;"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h:outputLabel class="font-dark">NAME: USER NAME</h:outputLabel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel class="font-dark">EMAIL: USER@LIBRARY>COM</h:outputLabel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel class="font-dark">ROLE: USER</h:outputLabel>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
+                                <tr>
+                                    <td id="td1"><h:link class="link  font-link" outcome="userhome">DASHBOARD</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1" class="card-title"><h:link class="link font-light" outcome="userdetails">Personal Details</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="passwordChange">Change Password</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="#{loginBean.doLogout()}">Logout</h:link></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="vertical-align: top; width: 70%" align="left">
+                            <div class="font-dark" style="margin-left: 50px;">
+                                <h3 align="center" class="link">User Profile</h3>
+                                <h:form>
+                                    <table>
+                                        <tr>
+                                            <td>Title</td>
+                                            <td><h:inputText class="textField" value="" style="margin-left: 10px; width: 550px;"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Year Published</td>
+                                            <td>
+                                                <h:selectOneListbox class="textField">
+                                                  
+                                                </h:selectOneListbox>
+                                            </td> 
+                                        </tr>
+                                        <tr>
+                                            <td>Genre</td>
+                                            <td><h:inputText class="textField" value=""/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Author</td>
+                                            <td>
+                                                <h:selectOneListbox class="textField">
+                                                  
+                                                </h:selectOneListbox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>File</td>
+                                            <td>
+                                                <h:inputFile style="margin-left: 10px;"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Description</td>
+                                            <td><h:inputTextarea class="textField" value="" style="height: 150px; width: 450px;"/></td>
+                                        </tr>
+                                    </table>
+                                </h:form>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div style="background-color: #4296a2; height: 50px; padding: 5px;">
                 <p class="font-light" align="center">Created by Kelechi Iwuorie. 2018</p>
@@ -59,4 +119,3 @@
         </div>
     </h:body>
 </html>
-

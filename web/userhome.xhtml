@@ -6,6 +6,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
+        <style>
+            #td1{
+                border-bottom: 1px solid #4296a2;
+                padding: 10px;
+            }
+        </style>
     </h:head>
     <h:body>
         <div>
@@ -23,36 +29,45 @@
             <div class="content-div">
                 <table width="100%">
                     <tr>
-                        <td style="vertical-align: top; width: 255px;" align="left">
+                        <td style="vertical-align: top; width: 30%;" align="left">
                             <table>
                                 <tr>
                                     <td rowspan="3">
                                         <div>
-                                            <img src="#{loginBean.imagePath}" style="width: 100px; height: 100px; border: 1px solid black;"/>
+                                            <h:graphicImage url="resources/images/images.png" style="width: 125px; height: 150px; border: 1px solid black;"/>
                                         </div>
                                     </td>
                                     <td>
-                                        <h:outputLabel class="font-dark">#{loginBean.firstname} #{loginBean.lastname}</h:outputLabel>
+                                        <h:outputLabel class="font-dark">NAME: USER NAME</h:outputLabel>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h:outputLabel class="font-dark">#{loginBean.email}</h:outputLabel>
+                                        <h:outputLabel class="font-dark">EMAIL: USER@LIBRARY.COM</h:outputLabel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel class="font-dark">ROLE: USER</h:outputLabel>
                                     </td>
                                 </tr>
                             </table>
-                            <div style="border: 1px solid #4296a2; width: 250px; margin-top: 50px;">
-                                <div align="center" class="card-title font-light">DASHBOARD</div>
-                                <div class="card-body">
-                                    <h:link class="link" outcome="#">Personal Details</h:link>
-                                    <hr/>
-                                    <h:link class="link" outcome="#{userBean.changePassword()}">Change Password</h:link>
-                                    <hr/>
-                                    <h:link class="link" outcome="#{loginBean.doLogout()}">Logout</h:link>
-                                </div>
-                            </div>
+                            <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
+                                <tr>
+                                    <td id="td1" class="card-title"><h:link class="link  font-light" outcome="userhome">DASHBOARD</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="userDetails">Personal Details</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="passwordChange">Change Password</h:link></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:link class="link font-link" outcome="#{loginBean.doLogout()}">Logout</h:link></td>
+                                </tr>
+                            </table>
                         </td>
-                        <td style="vertical-align: top;" align="left">
+                        <td style="vertical-align: top; width: 60%; margin-right: 100px;" align="">
                             <div class="font-dark" style="margin-left: 20px;">
                                 Search for books, authors, articles, etc.
                                 <h:form>
@@ -66,17 +81,17 @@
                                 <div style="margin-top: 10px; border: 1px solid #4296a2;">
                                     <div align="center" class="card-title font-light">SHELVE</div>
                                     <div class="card-body">
-                                        <h:link class="link">Link</h:link>
+                                        <h:link class="link font-link">Link</h:link>
                                         <hr/>
-                                        <h:link class="link">Link</h:link>
+                                        <h:link class="link font-link">Link</h:link>
                                         <hr/>
-                                        <h:link class="link">Link</h:link>
+                                        <h:link class="link font-link">Link</h:link>
                                         <hr/>
-                                        <h:link class="link">Link</h:link>
+                                        <h:link class="link font-link">Link</h:link>
                                         <hr/>
-                                        <h:link class="link">Link</h:link>
+                                        <h:link class="link font-link">Link</h:link>
                                         <hr/>
-                                        <h:link class="link">Link</h:link>
+                                        <h:link class="link font-link">Link</h:link>
                                     </div>
                                 </div>
                             </div>
