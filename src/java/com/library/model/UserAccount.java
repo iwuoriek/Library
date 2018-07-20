@@ -33,8 +33,8 @@ public class UserAccount implements java.io.Serializable{
     private String password;
     @Column(name="USER_ROLE", nullable=false)
     private String userRole;
-    @Column(name="IMAGE")
-    private String imagePath;
+    @Column(name="IMAGE_NAME")
+    private String imageFileName;
 
     /**
      * @return the id
@@ -121,17 +121,17 @@ public class UserAccount implements java.io.Serializable{
     }
 
     /**
-     * @return the imagePath
+     * @return the imageFileName
      */
-    public String getImagePath() {
-        return imagePath;
+    public String getImageFileName() {
+        return imageFileName;
     }
 
     /**
-     * @param imagePath the imagePath to set
+     * @param imageFileName the imageFileName to set
      */
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
     }
     
     @Override

@@ -6,14 +6,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
-        <script type="text/javascript">
-            function checkField() {
-                var field = document.getElementsById("email").value;
-                if (field === "") {
-                    alert("This field cannot be empty");
-                }
-            }
-        </script>
     </h:head>
     <h:body>
         <div>
@@ -41,17 +33,17 @@
                     <table>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="email">Email</h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="email" value="#{loginBean.email}"/></td>
+                            <td align="left"><h:inputText class="textField" id="email" value="#{userBean.email}"/></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="pword">Password</h:outputLabel></td>
-                            <td align="left"><h:inputSecret class="textField" id="pword" value="#{loginBean.password}"/></td>
+                            <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}"/></td>
                         </tr>
                         <tr>
-                            <td class="font-dark warning" align="center" colspan="2">#{loginBean.loginMessage}</td>
+                            <td class="font-dark warning" align="center" colspan="2"></td>
                         </tr>
                         <tr>
-                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Login" action="#{loginBean.doLogin}" style="width: 100%; margin-top: 10px;"/></td>
+                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Login" action="#{userBean.doLogin()}" style="width: 100%; margin-top: 10px;"/></td>
                         </tr>
                         <tr>
                             <td class="font-dark" align="center" colspan="2">

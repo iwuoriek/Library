@@ -34,21 +34,21 @@
                                 <tr>
                                     <td rowspan="3">
                                         <div>
-                                            <h:graphicImage url="resources/images/images.png" style="width: 125px; height: 150px; border: 1px solid black;"/>
+                                            <h:graphicImage url="/image/#{userBean.imageFileName}" style="width: 125px; height: 150px; border: 1px solid black;"/>
                                         </div>
                                     </td>
                                     <td>
-                                        <h:outputLabel class="font-dark">NAME: USER NAME</h:outputLabel>
+                                        <h:outputLabel class="font-dark">NAME: #{userBean.lastname}, #{userBean.firstname}</h:outputLabel>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h:outputLabel class="font-dark">EMAIL: USER@LIBRARY>COM</h:outputLabel>
+                                        <h:outputLabel class="font-dark">EMAIL: #{userBean.email}</h:outputLabel>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h:outputLabel class="font-dark">ROLE: USER</h:outputLabel>
+                                        <h:outputLabel class="font-dark">ROLE: #{userBean.userRole}</h:outputLabel>
                                     </td>
                                 </tr>
                             </table>
@@ -63,14 +63,14 @@
                                     <td id="td1"><h:link class="link font-link" outcome="passwordChange">Change Password</h:link></td>
                                 </tr>
                                 <tr>
-                                    <td id="td1"><h:link class="link font-link" outcome="#{loginBean.doLogout()}">Logout</h:link></td>
+                                    <td id="td1"><h:link class="link font-link" outcome="#{userBean.doLogout()}">Logout</h:link></td>
                                 </tr>
                             </table>
                         </td>
                         <td style="vertical-align: top; width: 70%" align="left">
                             <div class="font-dark" style="margin-left: 50px;">
                                 <h3 align="center" class="link">User Profile</h3>
-                                <h:form>
+                                <h:form enctype="multipart/form-data">
                                     <table>
                                         <tr>
                                             <td align="right"><h:outputLabel class="label font-dark" for="id">User ID<span class="warning">*</span></h:outputLabel></td>
@@ -90,7 +90,7 @@
                                         </tr>
                                         <tr>
                                             <td align="right"><h:outputLabel class="label font-dark" for="pic">Profile Pic</h:outputLabel></td>
-                                            <td align="left"><h:inputFile class="textField" id="pic" value=""/></td>
+                                            <td align="left"><h:inputFile class="textField" id="pic" value="#{userBean.imageFile}"/></td>
                                         </tr>
                                     </table>
                                 </h:form>

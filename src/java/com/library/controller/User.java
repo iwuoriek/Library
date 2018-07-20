@@ -5,6 +5,8 @@
  */
 package com.library.controller;
 
+import javax.servlet.http.Part;
+
 /**
  *
  * @author Kelechi
@@ -15,9 +17,9 @@ public abstract class User {
     private String lastname;
     private String email;
     private String password;
-    private String confirmPassword;
-    private String imagePath;
+    private String imageFileName;
     private String userRole;
+    private Part imageFile;
     
     /**
      * @return the firstname
@@ -76,31 +78,17 @@ public abstract class User {
     }
 
     /**
-     * @return the confirmPassword
+     * @return the imageFileName
      */
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public String getImageFileName() {
+        return imageFileName;
     }
 
     /**
-     * @param confirmPassword the confirmPassword to set
+     * @param imageFileName the imageFileName to set
      */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    /**
-     * @return the imagePath
-     */
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    /**
-     * @param imagePath the imagePath to set
-     */
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
     }
 
     /**
@@ -129,6 +117,21 @@ public abstract class User {
      */
     public void setId(int id) {
         this.id = id;
+    }
+    
+    
+    /**
+     * @return the imageFile
+     */
+    public Part getImageFile() {
+        return imageFile;
+    }
+
+    /**
+     * @param imageFile the imageFile to set
+     */
+    public void setImageFile(Part imageFile) {
+        this.imageFile = imageFile;
     }
     
 }
