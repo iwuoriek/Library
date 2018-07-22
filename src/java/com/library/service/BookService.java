@@ -5,10 +5,19 @@
  */
 package com.library.service;
 
+import com.library.model.Books;
+import java.util.List;
+
 /**
  *
  * @author Kelechi
  */
-public interface BookHandlerService {
+public interface BookService {
+    public String addBook(Books book);
     
+    public String updateBook(Books book);
+    
+    public Books getBook(String id);
+    
+    public List<Books> getBooks();
 }

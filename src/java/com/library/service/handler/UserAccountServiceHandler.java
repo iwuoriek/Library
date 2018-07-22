@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.service.dao;
+package com.library.service.handler;
 
 import com.library.model.SecurityQuestion;
 import com.library.model.UserAccount;
@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class UserAccountServiceDao implements UserAccountService{
+public class UserAccountServiceHandler implements UserAccountService{
     @Autowired
     private SessionFactory sessionFactory;
     @Override

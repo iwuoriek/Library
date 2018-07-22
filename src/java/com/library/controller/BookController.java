@@ -8,6 +8,7 @@ package com.library.controller;
 import com.library.model.Authors;
 import com.library.model.Books;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -15,12 +16,9 @@ import javax.inject.Named;
  * @author Kelechi
  */
 @Named("book")
+@RequestScoped
 public class BookController extends BooksAndAuthors implements java.io.Serializable{
     
-    private String bookTitle;
-    private String genre;
-    private String description;
-    private String rating;
     public String addBook(){
         return "";
     }

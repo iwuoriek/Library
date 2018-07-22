@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Named("userBean")
 @SessionScoped
 public class UserController extends User implements java.io.Serializable {
-    
+
     private final String root = System.getProperty("user.home") + "\\Documents\\NetBeansProjects\\Library\\web\\Upload\\To\\Images\\User-Pic\\";
     @Autowired
     private UserAccountService userService;
@@ -51,7 +51,7 @@ public class UserController extends User implements java.io.Serializable {
         }
         return "registration";
     }
-    
+
     //TO-DO Rewrite Hibernate query to update select values
     public String updateUser() {
         UserAccount user = new UserAccount();
@@ -59,20 +59,23 @@ public class UserController extends User implements java.io.Serializable {
         user.setFirstname(getFirstname());
         user.setLastname(getLastname());
         user.setEmail(getEmail());
-        if(getImageFile() != null){
+        if (getImageFile() != null) {
             user.setImageFileName(new FileUploader().imageUpload(getImageFile()));
+            FacesUtil.getSession().removeAttribute("imageUrl");
+            FacesUtil.getSession().setAttribute("imageUrl", user.getImageFileName());
         } else {
             user.setImageFileName(getImageFileName());
         }
         user.setUserRole(getUserRole());
         userService.updateUserInfo(user);
-        return "userhome?send-redirect=true";
+        setUpdatedUser(user);
+        return doRedirect(user);
     }
-    
+
     //TO-DO add password reset function
-    public String doPasswordChange(){
+    public String doPasswordChange() {
         UserAccount user = userService.getUser(getEmail());
-        if(user.getAnswer().compareTo(getAnswer()) == 0){
+        if (user.getAnswer().compareTo(getAnswer()) == 0) {
             userService.updatePassword(getEmail(), getPassword());
             return "login?send-redirect=true";
         }
@@ -90,27 +93,23 @@ public class UserController extends User implements java.io.Serializable {
             throw new ValidatorException(message);
         }
     }
-    
+
     public String doLogin() {
         UserAccount user = userService.getUser(getEmail());
         if (user != null) {
             if (getPassword().compareTo(user.getPassword()) == 0) {
-                setUser(user);
+                setLoggedInUser(user);
                 HttpSession session = FacesUtil.getSession();
-                session.setAttribute("userId", user.getId()+user.getFirstname());
-                if(user.getImageFileName() != null){
+                session.setAttribute("userId", user.getId() + user.getFirstname());
+                if (user.getImageFileName() != null) {
                     session.setAttribute("imageUrl", root + user.getImageFileName());
                 } else {
                     session.setAttribute("imageUrl", root + "default.png");
                 }
-                if (user.getUserRole().equals("NON-ADMIN")){
-                    return "userhome?faces-redirect=true";
-                } else if (user.getUserRole().equals("ADMIN")){
-                    return "adminhome?faces-redirect=true";
-                }
+
             }
         }
-        return "login";
+        return doRedirect(user);
     }
 
     public String doLogout() {
@@ -118,8 +117,8 @@ public class UserController extends User implements java.io.Serializable {
         session.invalidate();
         return "login?faces-redirect=true";
     }
-    
-    public void setUser(UserAccount user){
+
+    public void setLoggedInUser(UserAccount user) {
         setId(user.getId());
         setFirstname(user.getFirstname());
         setLastname(user.getLastname());
@@ -130,7 +129,24 @@ public class UserController extends User implements java.io.Serializable {
         setQuestion(user.getQuestion());
         setAnswer(null);
     }
-    
+
+    public void setUpdatedUser(UserAccount user) {
+        setId(user.getId());
+        setFirstname(user.getFirstname());
+        setLastname(user.getLastname());
+        setEmail(user.getEmail());
+        setImageFileName(user.getImageFileName());
+    }
+
+    public String doRedirect(UserAccount user) {
+        if (user.getUserRole().equals("NON-ADMIN")) {
+            return "userhome?faces-redirect=true";
+        } else if (user.getUserRole().equals("ADMIN")) {
+            return "adminhome?faces-redirect=true";
+        }
+        return "login";
+    }
+
     public List<SecurityQuestion> getQuestions() {
         return userService.getQuestions();
     }

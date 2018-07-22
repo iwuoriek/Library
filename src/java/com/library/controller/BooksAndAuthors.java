@@ -12,7 +12,95 @@ package com.library.controller;
  */
 public abstract class BooksAndAuthors {
     private String bookId;
+    private String bookTitle;
+    private String genre;
+    private String description;
+    private String rating;
     private String authorId;
+
+    /**
+     * @return the bookId
+     */
+    public String getBookId() {
+        return bookId;
+    }
+
+    /**
+     * @param bookId the bookId to set
+     */
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
+
+    /**
+     * @return the bookTitle
+     */
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    /**
+     * @param bookTitle the bookTitle to set
+     */
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    /**
+     * @return the genre
+     */
+    public String getGenre() {
+        return genre;
+    }
+
+    /**
+     * @param genre the genre to set
+     */
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the rating
+     */
+    public String getRating() {
+        return rating;
+    }
+
+    /**
+     * @param rating the rating to set
+     */
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    /**
+     * @return the authorId
+     */
+    public String getAuthorId() {
+        return authorId;
+    }
+
+    /**
+     * @param authorId the authorId to set
+     */
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
+    }
     /**Author's id to begin with "AU" and subsequent set of digits
      * Book id to begin with "BK" and subsequent set of digits
     */

@@ -75,11 +75,35 @@
                                 </h:form>
                             </table>
                         </td>
-                        <td style="vertical-align: top;" align="left">
-                            <div class="font-dark" style="margin-left: 20px;">
-                                Search for books, authors, articles, etc.
-                                <h:form>
-                                 
+                        <td style="vertical-align: top; width: 70%" align="left">
+                            <div class="font-dark" style="margin-left: 50px;">
+                                <h3 align="center" class="link">Administrator Profile</h3>
+                                <h:form enctype="multipart/form-data">
+                                    <table>
+                                        <tr>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="id">User ID<span class="warning">*</span></h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="id" value="#{userBean.id}" readonly="true"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="email">Email</h:outputLabel></td>
+                                            <td align="left"><h:inputText class="textField" id="email" value="#{userBean.email}" readonly="true"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><h:outputLabel class="label font-dark" for="pic">Profile Pic</h:outputLabel></td>
+                                            <td align="left"><h:inputFile class="textField" id="pic" value="#{userBean.imageFile}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Update User" action="#{userBean.updateUser()}" style="width: 100%; margin-top: 10px;"/></td>
+                                        </tr>
+                                    </table>
                                 </h:form>
                             </div>
                         </td>

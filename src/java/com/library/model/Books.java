@@ -22,12 +22,12 @@ public class Books implements java.io.Serializable{
     @Id
     @Column(name="BOOK_ID")
     private String bookId;
-    @Column(name="BOOK_TITLE")
+    @Column(name="BOOK_TITLE", nullable=false)
     private String bookTitle;
-    @Column(name="GENRE")
+    @Column(name="GENRE", nullable=false)
     private String genre;
     @ManyToOne
-    @JoinColumn(name="AUTHOR_ID")
+    @JoinColumn(name="AUTHOR_ID", nullable=false)
     private Authors author;
     @Column(name="AVE_RATING")
     private double rating;
