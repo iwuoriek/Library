@@ -34,43 +34,45 @@
                                 <tr>
                                     <td rowspan="3">
                                         <div>
-                                            <h:graphicImage url="resources/images/images.png" style="width: 125px; height: 150px; border: 1px solid black;"/>
+                                            <h:graphicImage url="/user/image/#{userBean.imageFileName}" style="width: 125px; height: 150px; border: 1px solid black;"/>
                                         </div>
                                     </td>
                                     <td>
-                                        <h:outputLabel class="font-dark">NAME: ADMIN NAME</h:outputLabel>
+                                        <h:outputLabel class="font-dark">NAME: #{userBean.lastname}, #{userBean.firstname}</h:outputLabel>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h:outputLabel class="font-dark">EMAIL: ADMIN@LIBRARY>COM</h:outputLabel>
+                                        <h:outputLabel class="font-dark">EMAIL: #{userBean.email}</h:outputLabel>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h:outputLabel class="font-dark">ROLE: ADMINISTRATOR</h:outputLabel>
+                                        <h:outputLabel class="font-dark">ROLE: #{userBean.userRole}</h:outputLabel>
                                     </td>
                                 </tr>
                             </table>
                             <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
+                                <h:form>
                                 <tr>
-                                    <td id="td1"><h:link class="link  font-link" outcome="adminhome">DASHBOARD</h:link></td>
+                                    <td id="td1"><h:commandLink class="link  font-link" action="adminhome">DASHBOARD</h:commandLink></td>
                                 </tr>
                                 <tr>
-                                    <td id="td1"><h:link class="link font-link" outcome="admindetails">Personal Details</h:link></td>
+                                    <td id="td1"><h:commandLink class="link font-link" action="admindetails">Personal Details</h:commandLink></td>
                                 </tr>
                                 <tr>
-                                    <td id="td1"><h:link class="link font-link" outcome="passwordChange">Change Password</h:link></td>
+                                    <td id="td1"><h:commandLink class="link font-link" action="passwordChange">Change Password</h:commandLink></td>
                                 </tr>
                                 <tr>
-                                    <td id="td1" class="card-title"><h:link class="link font-light" outcome="newbook">New Book</h:link></td>
+                                    <td id="td1" class="card-title"><h:commandLink class="link font-light" action="newbook">New Book</h:commandLink></td>
                                 </tr>
                                 <tr>
-                                    <td id="td1"><h:link class="link font-link" outcome="#">Update Book</h:link></td>
+                                    <td id="td1"><h:commandLink class="link font-link" action="#">Update Book</h:commandLink></td>
                                 </tr>
                                 <tr>
-                                    <td id="td1"><h:link class="link font-link" outcome="#{loginBean.doLogout()}">Logout</h:link></td>
+                                    <td id="td1"><h:commandLink class="link font-link" action="#{userBean.doLogout()}">Logout</h:commandLink></td>
                                 </tr>
+                                </h:form>
                             </table>
                         </td>
                         <td style="vertical-align: top; width: 70%" align="left">

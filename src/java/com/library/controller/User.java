@@ -20,6 +20,8 @@ public abstract class User {
     private String imageFileName;
     private String userRole;
     private Part imageFile;
+    private String question;
+    private String answer;
     
     /**
      * @return the firstname
@@ -132,6 +134,34 @@ public abstract class User {
      */
     public void setImageFile(Part imageFile) {
         this.imageFile = imageFile;
+    }
+
+    /**
+     * @return the question
+     */
+    public String getQuestion() {
+        return question;
+    }
+
+    /**
+     * @param question the question to set
+     */
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    /**
+     * @return the answer
+     */
+    public String getAnswer() {
+        return answer;
+    }
+
+    /**
+     * @param answer the answer to set
+     */
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
     
 }

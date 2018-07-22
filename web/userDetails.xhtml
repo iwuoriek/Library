@@ -53,18 +53,20 @@
                                 </tr>
                             </table>
                             <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
-                                <tr>
-                                    <td id="td1"><h:link class="link  font-link" outcome="userhome">DASHBOARD</h:link></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1" class="card-title"><h:link class="link font-light" outcome="userdetails">Personal Details</h:link></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1"><h:link class="link font-link" outcome="passwordChange">Change Password</h:link></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1"><h:link class="link font-link" outcome="#{userBean.doLogout()}">Logout</h:link></td>
-                                </tr>
+                                <h:form>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link  font-link" action="userhome">DASHBOARD</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1" class="card-title"><h:commandLink class="link font-light" action="userdetails">Personal Details</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link font-link" action="passwordChange">Change Password</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link font-link" action="#{userBean.doLogout()}">Logout</h:commandLink></td>
+                                    </tr>
+                                </h:form>
                             </table>
                         </td>
                         <td style="vertical-align: top; width: 70%" align="left">
@@ -91,6 +93,9 @@
                                         <tr>
                                             <td align="right"><h:outputLabel class="label font-dark" for="pic">Profile Pic</h:outputLabel></td>
                                             <td align="left"><h:inputFile class="textField" id="pic" value="#{userBean.imageFile}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Update User" action="#{userBean.updateUser()}" style="width: 100%; margin-top: 10px;"/></td>
                                         </tr>
                                     </table>
                                 </h:form>

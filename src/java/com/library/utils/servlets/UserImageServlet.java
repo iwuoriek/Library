@@ -24,9 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 public class UserImageServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //response.setContentType("image/png");
+        response.setContentType("image/png");
         String imagePath = (String) request.getSession(false).getAttribute("imageUrl");
-        
         OutputStream out;
         try(InputStream in = new FileInputStream(new File(imagePath))){
             out = response.getOutputStream();

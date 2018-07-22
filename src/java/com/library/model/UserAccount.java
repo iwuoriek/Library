@@ -35,6 +35,10 @@ public class UserAccount implements java.io.Serializable{
     private String userRole;
     @Column(name="IMAGE_NAME")
     private String imageFileName;
+    @Column(name="SECURITY_QUESTION")
+    private String question;
+    @Column(name="ANSWER")
+    private String answer;
 
     /**
      * @return the id
@@ -137,5 +141,33 @@ public class UserAccount implements java.io.Serializable{
     @Override
     public String toString(){
         return firstname+"======="+email;
+    }
+
+    /**
+     * @return the question
+     */
+    public String getQuestion() {
+        return question;
+    }
+
+    /**
+     * @param question the question to set
+     */
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    /**
+     * @return the answer
+     */
+    public String getAnswer() {
+        return answer;
+    }
+
+    /**
+     * @param answer the answer to set
+     */
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

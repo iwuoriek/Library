@@ -5,6 +5,7 @@
  */
 package com.library.service.dao;
 
+import com.library.model.SecurityQuestion;
 import com.library.model.UserAccount;
 import com.library.service.UserAccountService;
 import java.util.HashMap;
@@ -35,8 +36,13 @@ public class UserAccountServiceDao implements UserAccountService{
 
     @Override
     public String updateUserInfo(UserAccount user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.update(user);
+        sessionFactory.getCurrentSession()
+                .createQuery("UPDATE UserAccount SET firstname = :firstname, lastname = :lastname, imageFileName = :fileName WHERE email = :email")
+                .setString("firstname", user.getFirstname())
+                .setString("lastname", user.getLastname())
+                .setString("fileName", user.getImageFileName())
+                .setString("email", user.getEmail())
+                .executeUpdate();
         return "success";
     }
 
@@ -56,5 +62,19 @@ public class UserAccountServiceDao implements UserAccountService{
                 .uniqueResult();
         return user;
     }
+
+    @Override
+    public List<SecurityQuestion> getQuestions() {
+        return sessionFactory.getCurrentSession().createQuery("From SecurityQuestion").list();
+    }
     
+    @Override
+    public String updatePassword(String email, String password){
+        sessionFactory.getCurrentSession()
+                .createQuery("UPDATE UserAccount SET password = :newPassword WHERE email = :email")
+                .setString("newPassword", password)
+                .setString("email", email)
+                .executeUpdate();
+        return "success";
+    }
 }
