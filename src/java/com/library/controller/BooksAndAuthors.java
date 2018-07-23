@@ -14,6 +14,7 @@ public abstract class BooksAndAuthors {
     private String bookId;
     private String bookTitle;
     private String genre;
+    private String fileName;
     private String description;
     private double rating;
     private String authorId;
@@ -115,6 +116,20 @@ public abstract class BooksAndAuthors {
      */
     public void setYear(int year) {
         this.year = year;
+    }
+
+    /**
+     * @return the fileName
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * @param fileName the fileName to set
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
     /**Author's id to begin with "AU" and subsequent set of digits
      * Book id to begin with "BK" and subsequent set of digits

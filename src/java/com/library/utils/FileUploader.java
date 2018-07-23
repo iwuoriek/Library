@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FileUploader {
 
-    private static final String ROOT = System.getProperty("user.home") + "\\Documents\\NetBeansProjects\\Library\\web\\Upload\\To\\";
+    public static final String ROOT = System.getProperty("user.home") + "\\Upload\\To\\";
 
     private void uploadFile(Part file, String fileName, String filePath) {
         try {
@@ -41,7 +41,7 @@ public class FileUploader {
 
     public String imageUpload(Part file) {
         String fileName = null;
-        if (file.getContentType().equals("image/png") || (file.getContentType().equals("image/jpeg"))) {
+        if (file.getContentType().equals("image/png") || file.getContentType().equals("image/jpeg")) {
             fileName = FacesUtil.getUserId() + ".png";
             String filePath = ROOT + "\\Images\\User-Pic\\";
             uploadFile(file, fileName, filePath);

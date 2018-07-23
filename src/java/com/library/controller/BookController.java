@@ -5,16 +5,17 @@
  */
 package com.library.controller;
 
-import com.library.model.Authors;
 import com.library.model.Book;
 import com.library.model.Genre;
 import com.library.service.BookService;
+import com.library.utils.FacesUtil;
 import com.library.utils.FileUploader;
 import com.library.utils.GenerateId;
 import java.util.Date;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,13 +24,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Kelechi
  */
 @Named("bookBean")
-@RequestScoped
+@SessionScoped
 public class BookController extends BooksAndAuthors implements java.io.Serializable{
     
     @Autowired
     private BookService service;
     private Part bookFile;
-    
+    private final String root = FileUploader.ROOT + "Books\\";
     public String addBook(){
         Book book = new Book();
         book.setBookId(new GenerateId().generateBookId(service.getBooks()));
@@ -51,6 +52,13 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
         return "";
     }
     
+    public String readBook(Book book){
+        HttpSession session = FacesUtil.getSession();
+        session.setAttribute("bookToRead", root + book.getFileName());
+        setBook(book);
+        return "bookpage";
+    }
+    
     public Integer[] getYears(){
         Integer[] years = new Integer[100];
         int year = new Date().getYear() + 1900;
@@ -63,6 +71,15 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
     
     public List<Genre> getGenres(){
         return service.getGenre();
+    }
+    
+    public List<Book> getBookList(){
+        return service.getBooks();
+    }
+    
+    private void setBook(Book book){
+        setBookTitle(book.getBookTitle());
+        setFileName(book.getFileName());
     }
 
     /**

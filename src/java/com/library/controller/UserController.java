@@ -29,7 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @SessionScoped
 public class UserController extends User implements java.io.Serializable {
 
-    private final String root = System.getProperty("user.home") + "\\Documents\\NetBeansProjects\\Library\\web\\Upload\\To\\Images\\User-Pic\\";
+    private final String root = System.getProperty("user.home") + "\\Upload\\To\\Images\\User-Pic\\";
     @Autowired
     private UserAccountService userService;
 
@@ -62,7 +62,7 @@ public class UserController extends User implements java.io.Serializable {
         if (getImageFile() != null) {
             user.setImageFileName(new FileUploader().imageUpload(getImageFile()));
             FacesUtil.getSession().removeAttribute("imageUrl");
-            FacesUtil.getSession().setAttribute("imageUrl", user.getImageFileName());
+            FacesUtil.getSession().setAttribute("imageUrl", root+user.getImageFileName());
         } else {
             user.setImageFileName(getImageFileName());
         }
@@ -115,6 +115,8 @@ public class UserController extends User implements java.io.Serializable {
     public String doLogout() {
         HttpSession session = FacesUtil.getSession();
         session.invalidate();
+        UserAccount user = new UserAccount();
+        setLoggedInUser(user);
         return "login?faces-redirect=true";
     }
 
