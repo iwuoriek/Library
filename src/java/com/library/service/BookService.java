@@ -5,7 +5,8 @@
  */
 package com.library.service;
 
-import com.library.model.Books;
+import com.library.model.Book;
+import com.library.model.Genre;
 import java.util.List;
 
 /**
@@ -13,11 +14,13 @@ import java.util.List;
  * @author Kelechi
  */
 public interface BookService {
-    public String addBook(Books book);
+    public String addBook(Book book);
     
-    public String updateBook(Books book);
+    public String updateBook(Book book);
     
-    public Books getBook(String id);
+    public Book getBook(String id);
     
-    public List<Books> getBooks();
+    public List<Book> getBooks();
+    
+    public List<Genre> getGenre();
 }

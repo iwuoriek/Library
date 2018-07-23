@@ -21,11 +21,11 @@ public class BookRatingsId implements java.io.Serializable{
     
     @ManyToOne
     @JoinColumn(name="BOOK_ID")
-    Books book;
+    Book book;
     
     protected BookRatingsId(){}
     
-    public BookRatingsId(UserAccount user, Books book){
+    public BookRatingsId(UserAccount user, Book book){
         this.user = user;
         this.book = book;
     }
@@ -34,7 +34,7 @@ public class BookRatingsId implements java.io.Serializable{
         return user;
     }
     
-    public Books getBook(){
+    public Book getBook(){
         return book;
     }
 }

@@ -15,8 +15,9 @@ public abstract class BooksAndAuthors {
     private String bookTitle;
     private String genre;
     private String description;
-    private String rating;
+    private double rating;
     private String authorId;
+    private int year;
 
     /**
      * @return the bookId
@@ -77,14 +78,14 @@ public abstract class BooksAndAuthors {
     /**
      * @return the rating
      */
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
 
     /**
      * @param rating the rating to set
      */
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -100,6 +101,20 @@ public abstract class BooksAndAuthors {
      */
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
+    }
+
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * @param year the year to set
+     */
+    public void setYear(int year) {
+        this.year = year;
     }
     /**Author's id to begin with "AU" and subsequent set of digits
      * Book id to begin with "BK" and subsequent set of digits

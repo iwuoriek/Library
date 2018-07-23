@@ -22,21 +22,21 @@ public class Genre implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="ID")
-    private String id;
+    private int id;
     @Column(name="GENRE")
     private String genre;
 
     /**
      * @return the id
      */
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

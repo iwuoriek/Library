@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
@@ -78,41 +79,50 @@
                         <td style="vertical-align: top; width: 70%" align="left">
                             <div class="font-dark" style="margin-left: 50px;">
                                 <h3 align="center" class="link">ADD A BOOK</h3>
-                                <h:form>
+                                <h:form enctype="multipart/form-data">
                                     <table>
                                         <tr>
                                             <td>Title</td>
-                                            <td><h:inputText class="textField" value="" style="margin-left: 10px; width: 550px;"/></td>
+                                            <td><h:inputText class="textField" value="#{bookBean.bookTitle}" style="margin-left: 10px; width: 550px;"/></td>
                                         </tr>
                                         <tr>
                                             <td>Year Published</td>
                                             <td>
-                                                <h:selectOneListbox class="textField">
-                                                  
-                                                </h:selectOneListbox>
+                                                <h:selectOneMenu class="textField" value="#{bookBean.year}">
+                                                    <f:selectItems value="#{bookBean.years}"/>
+                                                </h:selectOneMenu>
                                             </td> 
                                         </tr>
                                         <tr>
                                             <td>Genre</td>
-                                            <td><h:inputText class="textField" value=""/></td>
+                                            <td>
+                                                <h:selectOneMenu class="textField" value="#{bookBean.genre}">
+                                                    <f:selectItems value="#{bookBean.genres}" var="gnr" itemLabel="#{gnr.genre}" itemValue="#{gnr.genre}"/>
+                                                </h:selectOneMenu>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Author</td>
                                             <td>
-                                                <h:selectOneListbox class="textField">
+                                                <h:selectOneMenu class="textField">
                                                   
-                                                </h:selectOneListbox>
+                                                </h:selectOneMenu>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>File</td>
                                             <td>
-                                                <h:inputFile style="margin-left: 10px;"/>
+                                                <h:inputFile style="margin-left: 10px;" value="#{bookBean.bookFile}">
+                                                    <f:passThroughAttribute name="accept" value="application/pdf"/>  
+                                                </h:inputFile>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>
-                                            <td><h:inputTextarea class="textField" value="" style="height: 150px; width: 450px;"/></td>
+                                            <td><h:inputTextarea class="textField" value="#{bookBean.description}" style="height: 150px; width: 450px;"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:commandButton class="button" value="Add Book" action="#{bookBean.addBook()}"/></td>
                                         </tr>
                                     </table>
                                 </h:form>

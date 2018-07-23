@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Books")
-public class Books implements java.io.Serializable{
+public class Book implements java.io.Serializable{
     @Id
     @Column(name="BOOK_ID")
     private String bookId;
@@ -27,12 +27,16 @@ public class Books implements java.io.Serializable{
     @Column(name="GENRE", nullable=false)
     private String genre;
     @ManyToOne
-    @JoinColumn(name="AUTHOR_ID", nullable=false)
+    @JoinColumn(name="AUTHOR_ID")
     private Authors author;
     @Column(name="AVE_RATING")
     private double rating;
     @Column(name="DESCRIPTION")
     private String description;
+    @Column(name="FILE_NAME", nullable=false)
+    private String fileName;
+    @Column(name="YEAR_PUBLISHED")
+    private int year;
     
     /**
      * @return the bookId
@@ -116,5 +120,33 @@ public class Books implements java.io.Serializable{
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the fileName
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * @param fileName the fileName to set
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * @param year the year to set
+     */
+    public void setYear(int year) {
+        this.year = year;
     }
 }
