@@ -48,10 +48,15 @@ public class UserAccountServiceHandler implements UserAccountService{
 
     @Override
     public Map<String, UserAccount> getUsers() {
-        List<UserAccount> userList = sessionFactory.getCurrentSession().createQuery("From UserAccount").list();
+        List<UserAccount> userList = getAllUsers();
         Map<String, UserAccount> map = new HashMap<>();
         userList.stream().forEach((user)->{map.put(user.getEmail(), user);});
         return map;
+    }
+    
+    @Override
+    public List<UserAccount> getAllUsers() {
+        return sessionFactory.getCurrentSession().createQuery("From UserAccount").list();
     }
     
     @Override

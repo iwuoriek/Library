@@ -12,7 +12,7 @@ import javax.servlet.http.Part;
  * @author Kelechi
  */
 public abstract class User {
-    private int id;
+    private String id;
     private String firstname;
     private String lastname;
     private String email;
@@ -110,14 +110,14 @@ public abstract class User {
     /**
      * @return the id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     

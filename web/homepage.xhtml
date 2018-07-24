@@ -25,10 +25,13 @@
                         </td>
                         <td align="right" width="60%">
                             <nav>
-                                <h:link class="link font-link" outcome="viewbooks">View Our Books</h:link>
-                                <h:link class="link font-link" outcome="registration" disabled="false">Register With Us</h:link>
-                                <h:link class="link font-link" outcome="aboutus">About us</h:link>
-                                <h:link class="link font-link" outcome="login">Login <img src="resources/images/login.png" style="width: 20px; height: 20px;"/></h:link>
+                                <h:form>
+                                    <h:commandLink class="link button font-light" style="padding: 5px;" action="#{userBean.toUserHome()}">#{userBean.linkToDisplay()}</h:commandLink>
+                                    <h:commandLink class="link font-link" action="viewbooks">View Our Books</h:commandLink>
+                                    <h:commandLink class="link font-link" action="registration">Register With Us</h:commandLink>
+                                    <h:commandLink class="link font-link" action="aboutus">About us</h:commandLink>
+                                    <h:commandLink class="link font-link" action="#{userBean.actionToPerform()}">#{userBean.optionToDisplay()} <img src="resources/images/#{userBean.imageToDisplay()}" style="width: 20px; height: 20px;"/></h:commandLink>
+                                </h:form>
                             </nav>
                         </td>
                     </tr>

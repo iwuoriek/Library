@@ -10,6 +10,7 @@ import com.library.utils.FileUploader;
 import com.library.model.UserAccount;
 import com.library.service.UserAccountService;
 import com.library.utils.FacesUtil;
+import com.library.utils.GenerateId;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
@@ -32,12 +33,16 @@ public class UserController extends User implements java.io.Serializable {
     private final String root = System.getProperty("user.home") + "\\Upload\\To\\Images\\User-Pic\\";
     @Autowired
     private UserAccountService userService;
+    private String optionToDisplay;
+    private String imageToDisplay;
+    private String actionToPerform;
 
     public UserController() {
     }
 
     public String registerUser() {
         UserAccount user = new UserAccount();
+        user.setId(new GenerateId().generateUserId(userService.getAllUsers()));
         user.setFirstname(getFirstname());
         user.setLastname(getLastname());
         user.setEmail(getEmail());
@@ -62,7 +67,7 @@ public class UserController extends User implements java.io.Serializable {
         if (getImageFile() != null) {
             user.setImageFileName(new FileUploader().imageUpload(getImageFile()));
             FacesUtil.getSession().removeAttribute("imageUrl");
-            FacesUtil.getSession().setAttribute("imageUrl", root+user.getImageFileName());
+            FacesUtil.getSession().setAttribute("imageUrl", root + user.getImageFileName());
         } else {
             user.setImageFileName(getImageFileName());
         }
@@ -77,7 +82,7 @@ public class UserController extends User implements java.io.Serializable {
         UserAccount user = userService.getUser(getEmail());
         if (user.getAnswer().compareTo(getAnswer()) == 0) {
             userService.updatePassword(getEmail(), getPassword());
-            return "login?send-redirect=true";
+            return doLogout();
         }
         return "passwordChange";
     }
@@ -100,7 +105,7 @@ public class UserController extends User implements java.io.Serializable {
             if (getPassword().compareTo(user.getPassword()) == 0) {
                 setLoggedInUser(user);
                 HttpSession session = FacesUtil.getSession();
-                session.setAttribute("userId", user.getId() + user.getFirstname());
+                session.setAttribute("userId", user.getId());
                 if (user.getImageFileName() != null) {
                     session.setAttribute("imageUrl", root + user.getImageFileName());
                 } else {
@@ -151,6 +156,51 @@ public class UserController extends User implements java.io.Serializable {
 
     public List<SecurityQuestion> getQuestions() {
         return userService.getQuestions();
+    }
+
+    public String optionToDisplay() {
+        if (FacesUtil.getUserId() == null) {
+            this.optionToDisplay = "Login";
+        } else {
+            this.optionToDisplay = "Logout";
+        }
+        return optionToDisplay;
+    }
+
+    public String imageToDisplay() {
+        if (FacesUtil.getUserId() == null) {
+            this.imageToDisplay = "login.png";
+        } else {
+            this.imageToDisplay = "logout.png";
+        }
+        return imageToDisplay;
+    }
+
+    public String actionToPerform() {
+        if (FacesUtil.getUserId() == null) {
+            this.actionToPerform = "login";
+        } else {
+            this.actionToPerform = doLogout();
+        }
+        return actionToPerform;
+    }
+
+    public String toUserHome() {
+        if (FacesUtil.getUserId() != null) {
+            if (getUserRole().equals("NON-ADMIN")) {
+                return "userhome?faces-redirect=true";
+            } else if (getUserRole().equals("ADMIN")) {
+                return "adminhome?faces-redirect=true";
+            }
+        }
+        return "#";
+    }
+    
+    public String linkToDisplay() {
+        if (FacesUtil.getUserId() != null) {
+            return getFirstname()+" "+getLastname();
+        }
+        return "";
     }
 
 }

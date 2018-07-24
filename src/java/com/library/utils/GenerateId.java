@@ -5,7 +5,9 @@
  */
 package com.library.utils;
 
+import com.library.model.Authors;
 import com.library.model.Book;
+import com.library.model.UserAccount;
 import java.util.List;
 
 /**
@@ -24,5 +26,29 @@ public class GenerateId {
             return "LIBBK-1";
         }
         return bookId;
+    }
+    
+    public String generateUserId(List<UserAccount> users) {
+        String userId = null;
+        try {
+            String[] id = users.get(users.size() - 1).getId().split("-");
+            int number = Integer.parseInt(id[1]) + 1;
+            userId = id[0] + "-" + number;
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            return "LIBUSR-1";
+        }
+        return userId;
+    }
+    
+    public String generateAuthorId(List<Authors> authors) {
+        String userId = null;
+        try {
+            String[] id = authors.get(authors.size() - 1).getAuthorId().split("-");
+            int number = Integer.parseInt(id[1]) + 1;
+            userId = id[0] + "-" + number;
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            return "BKATHR-1";
+        }
+        return userId;
     }
 }

@@ -7,8 +7,6 @@ package com.library.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,9 +18,8 @@ import javax.persistence.Table;
 @Table(name="UserAccount")
 public class UserAccount implements java.io.Serializable{
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="ID")
-    private int id;
+    private String id;
     @Column(name="FIRST_NAME", nullable=false)
     private String firstname;
     @Column(name="LAST_NAME", nullable =false)
@@ -43,14 +40,14 @@ public class UserAccount implements java.io.Serializable{
     /**
      * @return the id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

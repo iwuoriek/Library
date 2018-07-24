@@ -5,8 +5,7 @@
         <group>
             <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/controller/BookController.java</file>
             <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/web/newbook.xhtml</file>
-            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/utils/GenerateId.java</file>
-            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/service/handler/BookServiceHandler.java</file>
+            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/web/viewbooks.xhtml</file>
             <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/utils/FileUploader.java</file>
             <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/Library/src/java/com/library/controller/BooksAndAuthors.java</file>
         </group>

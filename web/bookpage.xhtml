@@ -19,8 +19,11 @@
                         </td>
                         <td align="right" width="60%">
                             <nav>
-                                <h:link class="link font-link" outcome="viewbooks">View Our Books</h:link>
-                                <h:link class="link font-link" outcome="login">Logout<img src="resources/images/login.png" style="width: 20px; height: 20px;"/></h:link>
+                                <h:form>
+                                    <h:commandLink class="link button font-light" style="padding: 5px;" action="#{userBean.toUserHome()}">#{userBean.linkToDisplay()}</h:commandLink>
+                                    <h:commandLink class="link font-link" action="viewbooks">View Our Books</h:commandLink>
+                                    <h:commandLink class="link font-link" action="#{userBean.actionToPerform()}">#{userBean.optionToDisplay()} <img src="resources/images/#{userBean.imageToDisplay()}" style="width: 20px; height: 20px;"/></h:commandLink>
+                                </h:form>
                             </nav>
                         </td>
                     </tr>
@@ -28,7 +31,8 @@
             </div>
             <div align="center" class="content-div">
                 <h:outputLabel class="font-dark" style="margin-bottom: 20px; font-size: 20px">#{bookBean.bookTitle}</h:outputLabel>
-                <iframe src="/Library/book/pdf/#{bookBean.fileName}" style="width: 100%; height: 500px;"/>
+                <br/>
+                <iframe src="/Library/book/pdf/#{bookBean.fileName}" style="width: 80%; height: 500px;"/>
             </div>
         </div>    
     </h:body>

@@ -21,6 +21,8 @@ public interface UserAccountService {
     
     public Map<String, UserAccount> getUsers();
     
+    public List<UserAccount> getAllUsers();
+    
     public UserAccount getUser(String email);
     
     public List<SecurityQuestion> getQuestions();

@@ -28,19 +28,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BookController extends BooksAndAuthors implements java.io.Serializable{
     
     @Autowired
-    private BookService service;
+    private BookService bookService;
     private Part bookFile;
     private final String root = FileUploader.ROOT + "Books\\";
     public String addBook(){
         Book book = new Book();
-        book.setBookId(new GenerateId().generateBookId(service.getBooks()));
+        book.setBookId(new GenerateId().generateBookId(bookService.getBooks()));
         book.setBookTitle(getBookTitle());
         book.setDescription(getDescription());
         book.setGenre(getGenre());
         book.setRating(getRating());
         book.setFileName(new FileUploader().uploadBook(bookFile, book.getBookId()));
         book.setYear(getYear());
-        service.addBook(book);
+        bookService.addBook(book);
         return "newbook";
     }
     
@@ -70,11 +70,11 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
     }
     
     public List<Genre> getGenres(){
-        return service.getGenre();
+        return bookService.getGenre();
     }
     
     public List<Book> getBookList(){
-        return service.getBooks();
+        return bookService.getBooks();
     }
     
     private void setBook(Book book){
