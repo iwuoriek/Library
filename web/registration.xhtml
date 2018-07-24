@@ -23,8 +23,8 @@
                         <td align="right" width="60%">
                             <nav>
                                 <h:form>
-                                    <h:commandLink class="link font-link" action="viewbooks">View Our Books</h:commandLink>
-                                    <h:commandLink class="link font-link" action="aboutus">About us</h:commandLink>
+                                    <h:commandLink class="link font-link" action="viewbooks?faces-redirect=true">View Our Books</h:commandLink>
+                                    <h:commandLink class="link font-link" action="aboutus?faces-redirect=true">About us</h:commandLink>
                                     <h:commandLink class="link font-link" action="#{userBean.actionToPerform()}">#{userBean.optionToDisplay()} <img src="resources/images/#{userBean.imageToDisplay()}" style="width: 20px; height: 20px;"/></h:commandLink>
                                 </h:form>
                             </nav>

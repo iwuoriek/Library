@@ -56,7 +56,7 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
         HttpSession session = FacesUtil.getSession();
         session.setAttribute("bookToRead", root + book.getFileName());
         setBook(book);
-        return "bookpage";
+        return "bookpage?faces-redirect=true";
     }
     
     public Integer[] getYears(){
