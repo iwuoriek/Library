@@ -5,7 +5,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
-        <title>The Library</title>
+        <title>Administrator</title>
         <style>
             #td1{
                 border-bottom: 1px solid #4296a2;
@@ -39,7 +39,9 @@
                             <table>
                                 <tr>
                                     <td rowspan="3">
-                                        <h:graphicImage url="/user/image/#{userBean.imageFileName}" alt="No Image" style="width: 125px; height: 150px; border: 1px solid black;"/>
+                                        <div>
+                                            <h:graphicImage url="/user/image/#{userBean.imageFileName}" style="width: 125px; height: 150px; border: 1px solid black;"/>
+                                        </div>
                                     </td>
                                     <td>
                                         <h:outputLabel class="font-dark">NAME: #{userBean.lastname}, #{userBean.firstname}</h:outputLabel>
@@ -58,18 +60,24 @@
                             </table>
                             <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
                                 <h:form>
-                                    <tr> 
-                                        <td id="td1" class="card-title"><h:link class="link  font-light" outcome="userhome">DASHBOARD</h:link></td>
-                                    </tr>
-                                    <tr>
-                                        <td id="td1"><h:commandLink class="link font-link" action="userDetails">Personal Details</h:commandLink></td>
-                                    </tr>
-                                    <tr>
-                                        <td id="td1"><h:commandLink class="link font-link" action="passwordChange">Change Password</h:commandLink></td>
-                                    </tr>
-                                    <tr>
-                                        <td id="td1"><h:commandLink class="link font-link" action="#{userBean.doLogout()}">Logout</h:commandLink></td>
-                                    </tr>
+                                <tr>
+                                    <td id="td1" class="card-title"><h:commandLink class="link  font-light" action="adminhome">DASHBOARD</h:commandLink></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:commandLink class="link font-link" action="admindetails">Personal Details</h:commandLink></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:commandLink class="link font-link" action="passwordChange">Change Password</h:commandLink></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:commandLink class="link font-link" action="newbook">New Book</h:commandLink></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:commandLink class="link font-link" action="#">Update Book</h:commandLink></td>
+                                </tr>
+                                <tr>
+                                    <td id="td1"><h:commandLink class="link font-link" action="#{userBean.doLogout()}">Logout</h:commandLink></td>
+                                </tr>
                                 </h:form>
                             </table>
                         </td>
@@ -84,22 +92,6 @@
                                         <h:button class="button font-light" value="Search"/>
                                     </div>
                                 </h:form>
-                                <div style="margin-top: 10px; border: 1px solid #4296a2;">
-                                    <div align="center" class="card-title font-light">SHELVE</div>
-                                    <div class="card-body">
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                    </div>
-                                </div>
                             </div>
                         </td>
                     </tr>
@@ -111,4 +103,3 @@
         </div>
     </h:body>
 </html>
-

@@ -2,59 +2,95 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
 
     </h:head>
     <h:body>
-        <ui:composition template="menuTemplate.xhtml">
-            <ui:define name="body">
-                <div align="center" style="margin: 50px; margin-left: 200px; margin-right: 200px; padding: 20px; border-radius: 30px; box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);">
-                    <h2 align="center" style="font-size: 30px;" class="link">User Registration</h2>
-                    <p align="center" class="font-dark">Create and account with us, build your shelve and save all your favourite books.</p>
-                    <h:form>
-                        <table>
-                            <tr>
-                                <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}"/></td>
-                            </tr>
-                            <tr>
-                                <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}"/></td>
-                            </tr>
-                            <tr>
-                                <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left">
-                                    <f:ajax event="valueChange" render="errorMessage">
+        <div>
+            <div style="box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);">
+                <table width="100%" >
+                    <tr>
+                        <td align="left" width="40%">
+                            <h:link outcome="homepage" style="font-family: calibri; font-size: 35px; color: #4296a2; text-decoration: none; margin-left: 20px;">
+                                THE LIBRARY
+                            </h:link>
+                        </td>
+                        <td align="right" width="60%">
+                            <nav>
+                                <h:form>
+                                    <h:commandLink class="link font-link" action="viewbooks">View Our Books</h:commandLink>
+                                    <h:commandLink class="link font-link" action="aboutus">About us</h:commandLink>
+                                    <h:commandLink class="link font-link" action="#{userBean.actionToPerform()}">#{userBean.optionToDisplay()} <img src="resources/images/#{userBean.imageToDisplay()}" style="width: 20px; height: 20px;"/></h:commandLink>
+                                </h:form>
+                            </nav>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div align="center" style="margin: 50px; margin-left: 200px; margin-right: 200px; padding: 20px; border-radius: 30px; box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);">
+                <h2 align="center" style="font-size: 30px;" class="font-link">User Registration</h2>
+                <p align="center" class="font-dark">Create and account with us, build your shelve and save all your favourite books.</p>
+                <h:form>
+                    <table>
+                        <tr>
+                            <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
+                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}"/></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
+                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}"/></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
+                            <td align="left">
+                                <f:ajax event="valueChange" render="errorMessage">
                                     <h:inputText class="textField" id="email" value="#{userBean.email}" validator="#{userBean.validateEmail}" required="true"/>
                                     <h:message for="email" id="errorMessage" style="color: red;"/>
-                                    </f:ajax>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right"><h:outputLabel class="label font-dark" for="pword">Password<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}"/></td>
-                            </tr>
-                            <tr>
-                                <td align="right"><h:outputLabel class="label font-dark" for="cpword">Confirm Password<span class="warning">*</span></h:outputLabel></td>
-                                <td align="left"><h:inputSecret class="textField" id="cpword" value="#{userBean.confirmPassword}"/></td>
-                            </tr>
-                            <tr>
-                                <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" action="#{userBean.registerUser}" style="width: 100%; margin-top: 10px;"/></td>
-                            </tr>
-                            <tr>
-                                <td class="font-dark" align="center" colspan="2">
-                                    Already have an account? <h:link class="link warning" outcome="login"> Click to login.</h:link>
-                                </td>
-                            </tr>
+                                </f:ajax>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><h:outputLabel class="label font-dark" for="question">Security Question<span class="warning">*</span></h:outputLabel></td>
+                            <td align="left">
+                                <h:selectOneMenu class="textField" id="question" value="#{userBean.question}">
+                                    <f:selectItem itemLabel="Select Question"/>
+                                    <f:selectItems value="#{userBean.questions}" var="q" itemValue="#{q.question}" itemLabel="#{q.question}"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><h:outputLabel class="label font-dark" for="answer">Answer<span class="warning">*</span></h:outputLabel></td>
+                            <td align="left"><h:inputText class="textField" id="answer" value="#{userBean.answer}"/></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><h:outputLabel class="label font-dark" for="pword">Password<span class="warning">*</span></h:outputLabel></td>
+                            <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}"/></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><h:outputLabel class="label font-dark" for="cpword">Confirm Password<span class="warning">*</span></h:outputLabel></td>
+                            <td align="left"><h:inputSecret class="textField" id="cpword"/></td>
+                        </tr>
+                        <tr>
+                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" action="#{userBean.registerUser}" style="width: 100%; margin-top: 10px;"/></td>
+                        </tr>
+                        <tr>
+                            <td class="font-dark" align="center" colspan="2">
+                                Already have an account? <h:link class="link warning" outcome="login"> Click to login.</h:link>
+                            </td>
+                        </tr>
 
-                        </table>
-                    </h:form>
-                </div>
-            </ui:define>
-        </ui:composition>
+                    </table>
+                </h:form>
+            </div>
+            <div style="background-color: #4296a2; height: 50px; padding: 5px;">
+                <p class="font-light" align="center">Created by Kelechi Iwuorie. 2018</p>
+            </div>
+        </div>
     </h:body>
 </html>
 

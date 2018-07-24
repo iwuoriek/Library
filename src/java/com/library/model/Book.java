@@ -18,21 +18,25 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Books")
-public class Books implements java.io.Serializable{
+public class Book implements java.io.Serializable{
     @Id
     @Column(name="BOOK_ID")
     private String bookId;
-    @Column(name="BOOK_TITLE")
+    @Column(name="BOOK_TITLE", nullable=false)
     private String bookTitle;
-    @Column(name="DESCRIPTION")
-    private String description;
+    @Column(name="GENRE", nullable=false)
+    private String genre;
     @ManyToOne
     @JoinColumn(name="AUTHOR_ID")
     private Authors author;
     @Column(name="AVE_RATING")
     private double rating;
-    @Column(name="LOCATION")
-    private String location;
+    @Column(name="DESCRIPTION")
+    private String description;
+    @Column(name="FILE_NAME", nullable=false)
+    private String fileName;
+    @Column(name="YEAR_PUBLISHED")
+    private int year;
     
     /**
      * @return the bookId
@@ -63,17 +67,17 @@ public class Books implements java.io.Serializable{
     }
 
     /**
-     * @return the description
+     * @return the genre
      */
-    public String getDescription() {
-        return description;
+    public String getGenre() {
+        return genre;
     }
 
     /**
-     * @param description the description to set
+     * @param genre the genre to set
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     /**
@@ -105,16 +109,44 @@ public class Books implements java.io.Serializable{
     }
 
     /**
-     * @return the location
+     * @return the description
      */
-    public String getLocation() {
-        return location;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param location the location to set
+     * @param description the description to set
      */
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the fileName
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * @param fileName the fileName to set
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * @param year the year to set
+     */
+    public void setYear(int year) {
+        this.year = year;
     }
 }

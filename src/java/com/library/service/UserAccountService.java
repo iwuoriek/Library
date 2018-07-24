@@ -5,7 +5,9 @@
  */
 package com.library.service;
 
+import com.library.model.SecurityQuestion;
 import com.library.model.UserAccount;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,5 +21,11 @@ public interface UserAccountService {
     
     public Map<String, UserAccount> getUsers();
     
+    public List<UserAccount> getAllUsers();
+    
     public UserAccount getUser(String email);
+    
+    public List<SecurityQuestion> getQuestions();
+    
+    public String updatePassword(String email, String password);
 }

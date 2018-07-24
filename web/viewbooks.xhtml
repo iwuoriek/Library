@@ -1,19 +1,86 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
     <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
+        <style>
+            td{
+                align-content: flex-start;
+                align-items: flex-start;
+            }
+
+            tr{
+                margin: 10px;
+            }
+        </style>
     </h:head>
     <h:body>
-        <ui:composition template="menuTemplate.xhtml">
-            <ui:define name="body">
-                <div align="center" class="content-div">
-                    <img src="resources/images/construction.PNG" width="600px" height="500px"/>
-                </div>
-            </ui:define>
-        </ui:composition>
+        <div>
+            <div style="box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);">
+                <table width="100%" >
+                    <tr>
+                        <td align="left" width="40%">
+                            <h:link outcome="homepage" style="font-family: calibri; font-size: 35px; color: #4296a2; text-decoration: none; margin-left: 20px;">
+                                THE LIBRARY
+                            </h:link>
+                        </td>
+                        <td align="right" width="60%">
+                            <nav>
+                                <h:form>
+                                    <h:commandLink class="link button font-light" style="padding: 5px;" action="#{userBean.toUserHome()}">#{userBean.linkToDisplay()}</h:commandLink>
+                                    <h:commandLink class="link font-link" action="registration">Register With Us</h:commandLink>
+                                    <h:commandLink class="link font-link" action="aboutus">About us</h:commandLink>
+                                    <h:commandLink class="link font-link" action="#{userBean.actionToPerform()}">#{userBean.optionToDisplay()} <img src="resources/images/#{userBean.imageToDisplay()}" style="width: 20px; height: 20px;"/></h:commandLink>
+                                </h:form>
+                            </nav>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div align="left" class="content-div">
+                <ui:repeat value="#{bookBean.bookList}" var="book">
+                    <div style="border: solid 2px #4296a2; border-radius: 5px; width: 900px; margin: 50px; padding: 10px; padding-bottom: 0px;">
+                        <table border="0px" width="100%" cellpadding="5px">
+                            <h:form>
+                                <tr>
+                                    <td width="200px"><h:outputLabel class="font-dark">Title</h:outputLabel></td>
+                                    <td><h:outputLabel class="font-dark">#{book.bookTitle}</h:outputLabel></td>
+                                </tr>
+                                <tr>
+                                    <td width="200px"><h:outputLabel class="font-dark">Year Published</h:outputLabel></td>
+                                    <td><h:outputLabel class="font-dark">#{book.year}</h:outputLabel></td>
+                                </tr>
+                                <tr>
+                                    <td width="200px"><h:outputLabel class="font-dark">Genre</h:outputLabel></td>
+                                    <td><h:outputLabel class="font-dark">#{book.genre}</h:outputLabel></td>
+                                </tr>
+                                <tr>
+                                    <td width="200px"><h:outputLabel class="font-dark">Author</h:outputLabel></td>
+                                    <td><h:outputLabel class="font-dark">#{book.author}</h:outputLabel></td>
+                                </tr>
+                                <tr>
+                                    <td width="200px"><h:outputLabel class="font-dark">Description</h:outputLabel></td>
+                                    <td><h:outputLabel class="font-dark">#{book.description}</h:outputLabel></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="left">
+                                        <h:commandButton class="button font-light" style="margin-right: 20px; width: 150px;" value="Add To Shelf" action="#"/>
+                                        <h:commandButton class="button font-light" value="Read" action="#{bookBean.readBook(book)}"/>
+                                    </td>
+                                </tr>
+                            </h:form>
+                        </table>
+                    </div>
+                </ui:repeat>
+            </div>
+            <div style="background-color: #4296a2; height: 50px; padding: 5px;">
+                <p class="font-light" align="center">Created by Kelechi Iwuorie. 2018</p>
+            </div>
+        </div>
     </h:body>
 </html>
 

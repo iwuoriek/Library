@@ -3,54 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.model;
+package com.library.controller;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Kelechi
  */
-@Entity
-@Table(name="UserAccount")
-public class UserAccount implements java.io.Serializable{
-    @Id
-    @Column(name="ID")
+public abstract class User {
     private String id;
-    @Column(name="FIRST_NAME", nullable=false)
     private String firstname;
-    @Column(name="LAST_NAME", nullable =false)
     private String lastname;
-    @Column(name="EMAIL", unique=true, nullable=false)
     private String email;
-    @Column(name="PASSWORD", nullable=false)
     private String password;
-    @Column(name="USER_ROLE", nullable=false)
-    private String userRole;
-    @Column(name="IMAGE_NAME")
     private String imageFileName;
-    @Column(name="SECURITY_QUESTION")
+    private String userRole;
+    private Part imageFile;
     private String question;
-    @Column(name="ANSWER")
     private String answer;
-
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    
     /**
      * @return the firstname
      */
@@ -108,6 +80,20 @@ public class UserAccount implements java.io.Serializable{
     }
 
     /**
+     * @return the imageFileName
+     */
+    public String getImageFileName() {
+        return imageFileName;
+    }
+
+    /**
+     * @param imageFileName the imageFileName to set
+     */
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
+    }
+
+    /**
      * @return the userRole
      */
     public String getUserRole() {
@@ -122,22 +108,32 @@ public class UserAccount implements java.io.Serializable{
     }
 
     /**
-     * @return the imageFileName
+     * @return the id
      */
-    public String getImageFileName() {
-        return imageFileName;
+    public String getId() {
+        return id;
     }
 
     /**
-     * @param imageFileName the imageFileName to set
+     * @param id the id to set
      */
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
+    public void setId(String id) {
+        this.id = id;
     }
     
-    @Override
-    public String toString(){
-        return firstname+"======="+email;
+    
+    /**
+     * @return the imageFile
+     */
+    public Part getImageFile() {
+        return imageFile;
+    }
+
+    /**
+     * @param imageFile the imageFile to set
+     */
+    public void setImageFile(Part imageFile) {
+        this.imageFile = imageFile;
     }
 
     /**
@@ -167,4 +163,5 @@ public class UserAccount implements java.io.Serializable{
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+    
 }

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.library.service;
-
-import com.library.model.UserAccount;
+package com.library.controller;
 
 /**
  *
  * @author Kelechi
  */
-public interface LoginAuthenticationService {
-    public UserAccount getUser(String email);
+public class AuthorController {
+    
 }
