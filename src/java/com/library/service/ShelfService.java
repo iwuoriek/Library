@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Kelechi
  */
-public interface ShelveService {
+public interface ShelfService {
 
     public String addToShelve(BookShelf shelve);
 

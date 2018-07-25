@@ -42,10 +42,16 @@
                 </table>
             </div>
             <div align="left" class="content-div">
+                <div align="center">
+                    <h:form>
+                        <h:message showDetail="true" for="" showSummary="true" class="warning" style="font-size: 20px; font-family: calibri;"/>
+                    </h:form>
+                </div>
                 <ui:repeat value="#{bookBean.bookList}" var="book">
                     <div style="border: solid 2px #4296a2; border-radius: 5px; width: 900px; margin: 50px; padding: 10px; padding-bottom: 0px;">
                         <table border="0px" width="100%" cellpadding="5px">
                             <h:form>
+                                <h:message for="" showDetail="true" showSummary="true"/>
                                 <tr>
                                     <td width="200px"><h:outputLabel class="font-dark">Title</h:outputLabel></td>
                                     <td><h:outputLabel class="font-dark">#{book.bookTitle}</h:outputLabel></td>
@@ -68,7 +74,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="left">
-                                        <h:commandButton class="button font-light" style="margin-right: 20px; width: 150px;" value="Add To Shelf" action="#{shelveBean.addToShelve(book)}"/>
+                                        <h:commandButton class="button font-light" style="margin-right: 20px; width: 150px;" value="Add To Shelf" action="#{shelfBean.addToShelf(book)}"/>
                                         <h:commandButton class="button font-light" value="Read" action="#{bookBean.readBook(book)}"/>
                                     </td>
                                 </tr>

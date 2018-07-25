@@ -8,6 +8,7 @@ package com.library.service.handler;
 import com.library.model.Book;
 import com.library.model.Genre;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class BookServiceHandler implements com.library.service.BookService{
     @Override
     public List<Book> getBooks() {
         return sessionFactory.getCurrentSession().createQuery("From Book").list();
+    }
+    
+    @Override
+    public Map<String, Book> getAll(){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override

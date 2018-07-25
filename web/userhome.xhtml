@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
@@ -87,17 +88,25 @@
                                 <div style="margin-top: 10px; border: 1px solid #4296a2;">
                                     <div align="center" class="card-title font-light">SHELVE</div>
                                     <div class="card-body">
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
-                                        <hr/>
-                                        <h:link class="link font-link">Link</h:link>
+                                        <h:form>
+                                            <table width="100%">    
+                                                <ui:repeat value="#{shelfBean.myBooks}" var="book">
+                                                    <tr>
+                                                        <td align="left">
+                                                            <h:commandLink class="link font-link" style="align-self: flex-start;" action="#{bookBean.readBook(book)}">#{book.bookTitle}</h:commandLink>
+                                                        </td>
+                                                        <td align="right">
+                                                            <h:commandButton class="button font-light" style="align-self: flex-end;" value="Remove" action="#{shelfBean.removeFromShelf(book)}"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <hr/>
+                                                        </td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </table>
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>

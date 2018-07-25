@@ -26,8 +26,8 @@ public class Authors implements java.io.Serializable{
     private String name;
     @Column(name="AUTHOR_RATING")
     private int rating;
-    @OneToMany(mappedBy="author")
-    private Set<Book> books;
+//    @OneToMany(mappedBy="author")
+//    private Set<Book> books;
 
     /**
      * @return the authorId
@@ -74,14 +74,14 @@ public class Authors implements java.io.Serializable{
     /**
      * @return the books
      */
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    /**
-     * @param books the books to set
-     */
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
+//    public Set<Book> getBooks() {
+//        return books;
+//    }
+//
+//    /**
+//     * @param books the books to set
+//     */
+//    public void setBooks(Set<Book> books) {
+//        this.books = books;
+//    }
 }

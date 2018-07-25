@@ -8,6 +8,7 @@ package com.library.service;
 import com.library.model.Book;
 import com.library.model.Genre;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -21,6 +22,8 @@ public interface BookService {
     public Book getBook(String id);
     
     public List<Book> getBooks();
+    
+    public Map<String, Book> getAll();
     
     public List<Genre> getGenre();
 }

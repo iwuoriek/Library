@@ -7,12 +7,12 @@ package com.library.service.handler;
 
 import com.library.model.BookShelf;
 import com.library.model.ShelfId;
-import com.library.service.ShelveService;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.library.service.ShelfService;
 
 /**
  *
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class ShelveServiceHandler implements ShelveService {
+public class ShelfServiceHandler implements ShelfService {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -32,8 +32,9 @@ public class ShelveServiceHandler implements ShelveService {
     }
 
     @Override
-    public String removeFromShelve(BookShelf shelve) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String removeFromShelve(BookShelf shelf) {
+        sessionFactory.getCurrentSession().delete(shelf);
+        return "success";
     }
 
     @Override
