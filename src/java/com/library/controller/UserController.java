@@ -104,6 +104,7 @@ public class UserController extends User implements java.io.Serializable {
                 HttpSession session = FacesUtil.getSession();
                 session.setAttribute("userId", user.getId());
                 session.setAttribute("role", user.getUserRole());
+                session.setAttribute("user", user);
                 if (user.getImageFileName() != null) {
                     session.setAttribute("imageUrl", root + user.getImageFileName());
                 } else {

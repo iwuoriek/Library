@@ -37,6 +37,7 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
         book.setBookTitle(getBookTitle());
         book.setDescription(getDescription());
         book.setGenre(getGenre());
+        book.setAuthor(getAuthor());
         book.setRating(getRating());
         book.setFileName(new FileUploader().uploadBook(bookFile, book.getBookId()));
         book.setYear(getYear());
@@ -95,6 +96,4 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
     public void setBookFile(Part bookFile) {
         this.bookFile = bookFile;
     }
-    
-    
 }

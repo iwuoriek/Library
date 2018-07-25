@@ -26,9 +26,8 @@ public class Book implements java.io.Serializable{
     private String bookTitle;
     @Column(name="GENRE", nullable=false)
     private String genre;
-    @ManyToOne
-    @JoinColumn(name="AUTHOR_ID")
-    private Authors author;
+    @Column(name="AUTHOR", nullable=false)
+    private String author;
     @Column(name="AVE_RATING")
     private double rating;
     @Column(name="DESCRIPTION")
@@ -83,14 +82,14 @@ public class Book implements java.io.Serializable{
     /**
      * @return the author
      */
-    public Authors getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
     /**
      * @param author the author to set
      */
-    public void setAuthor(Authors author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 

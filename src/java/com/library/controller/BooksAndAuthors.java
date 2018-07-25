@@ -17,7 +17,7 @@ public abstract class BooksAndAuthors {
     private String fileName;
     private String description;
     private double rating;
-    private String authorId;
+    private String author;
     private int year;
 
     /**
@@ -91,17 +91,17 @@ public abstract class BooksAndAuthors {
     }
 
     /**
-     * @return the authorId
+     * @return the author
      */
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthor() {
+        return author;
     }
 
     /**
-     * @param authorId the authorId to set
+     * @param author the author to set
      */
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     /**
