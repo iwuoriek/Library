@@ -10,6 +10,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +29,10 @@ public class FileUploader {
     private void uploadFile(Part file, String fileName, String filePath) {
         try {
             File f = new File(filePath + fileName);
+            Path directory = Paths.get(filePath);
+            if(Files.notExists(directory, LinkOption.NOFOLLOW_LINKS)){
+                Files.createDirectories(directory);
+            }
             if (!f.exists()) {
                 f.createNewFile();
             }
@@ -43,7 +51,7 @@ public class FileUploader {
         String fileName = null;
         if (file.getContentType().equals("image/png") || file.getContentType().equals("image/jpeg")) {
             fileName = FacesUtil.getUserId() + ".png";
-            String filePath = ROOT + "\\Images\\User-Pic\\";
+            String filePath = ROOT + "\\Images\\";
             uploadFile(file, fileName, filePath);
         }
         return fileName;

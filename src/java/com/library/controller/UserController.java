@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @SessionScoped
 public class UserController extends User implements java.io.Serializable {
 
-    private final String root = System.getProperty("user.home") + "\\Upload\\To\\Images\\User-Pic\\";
+    private final String root = System.getProperty("user.home") + "\\Upload\\To\\Images\\";
     @Autowired
     private UserAccountService userService;
 
@@ -82,7 +82,7 @@ public class UserController extends User implements java.io.Serializable {
             userService.updatePassword(getEmail(), getPassword());
             return doLogout();
         } else {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Incorrect answer!");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Incorrect email or answer!");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return "passwordChange";
         }
