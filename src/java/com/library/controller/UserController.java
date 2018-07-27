@@ -12,11 +12,11 @@ import com.library.service.UserAccountService;
 import com.library.utils.FacesUtil;
 import com.library.utils.GenerateId;
 import java.util.List;
-import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -47,14 +47,16 @@ public class UserController extends User implements java.io.Serializable {
         user.setAnswer(getAnswer());
         user.setPassword(getPassword());
         user.setUserRole("NON-ADMIN");
-        String status = userService.registerUser(user);
-        if (status.equals("success")) {
+        if (userService.getUser(user.getEmail()) == null){
+            userService.registerUser(user);
             return "login";
+        } else {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "This user already exists");
+            FacesContext.getCurrentInstance().addMessage(null, message);
         }
         return "registration";
     }
 
-    //TO-DO Rewrite Hibernate query to update select values
     public String updateUser() {
         UserAccount user = new UserAccount();
         user.setId(getId());
@@ -74,23 +76,36 @@ public class UserController extends User implements java.io.Serializable {
         return doRedirect(user);
     }
 
-    //TO-DO add password reset function
     public String doPasswordChange() {
         UserAccount user = userService.getUser(getEmail());
-        if (user.getAnswer().compareTo(getAnswer()) == 0) {
+        if (user != null && user.getAnswer().equalsIgnoreCase(getAnswer())) {
             userService.updatePassword(getEmail(), getPassword());
             return doLogout();
+        } else {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Incorrect answer!");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return "passwordChange";
         }
-        return "passwordChange";
+    }
+
+    public void emailChange(ValueChangeEvent event){
+        String email = event.getNewValue().toString();
+        UserAccount user = userService.getUser(email);
+        if(user != null){
+            setQuestion(user.getQuestion());
+        } else {
+            setQuestion(null);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Invalid user email!");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
     public void validateEmail(FacesContext context, UIComponent comp, Object value) throws ValidatorException, NullPointerException {
         String email = value.toString();
-        Map<String, UserAccount> userStore = userService.getUsers();
-        UserAccount user = userStore.get(email);
+        UserAccount user = userService.getUser(email);
         if (user != null) {
             FacesMessage message = new FacesMessage();
-            message.setSummary("This email is taken");
+            message.setSummary("This user already exists");
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(message);
         }
@@ -110,8 +125,15 @@ public class UserController extends User implements java.io.Serializable {
                 } else {
                     session.setAttribute("imageUrl", root + "default.png");
                 }
-
+            } else {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", "Your password is incorrect!");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                return "login";
             }
+        } else {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", "User does not exist!");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return "login";
         }
         return doRedirect(user);
     }
