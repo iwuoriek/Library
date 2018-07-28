@@ -2,13 +2,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
-
+        <script type="text/javascript">
+            function checkField(fieldId, labelId){
+                var field = document.getElementById(fieldId).value;
+                if(field === ""){
+                    document.getElementById(labelId).innerHTML = "Required";
+                } else {
+                    document.getElementById(labelId).innerHTML = "";
+                }
+            }
+            
+            function validateFields(){
+                var id = "j_idt17:";
+                var firstname = document.getElementById(id+'fname').value;
+                var lastname = document.getElementById(id+'lname').value;
+                var email = document.getElementById(id+'email').value;
+                var answer = document.getElementById(id+'answer').value;
+                var password = document.getElementById(id+'pword').value;
+                var confirmPassword = document.getElementById(id+'cpword').value;
+                
+                if(firstname === "" || lastname === "" || email === "" || answer === "" || password === "" || password !== confirmPassword){
+                    alert('Fill in empty fields');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function validatePassword(){
+                var id = "j_idt17:";
+                var password = document.getElementById(id+'pword').value;
+                var confirmPassword = document.getElementById(id+'cpword').value;
+                if(password === confirmPassword){
+                    return true;
+                } else {
+                    document.getElementById(id+'cpwd').innerHTML = "Passwords do not match";
+                    return false;
+                }
+            }
+            
+        </script>
     </h:head>
     <h:body>
         <div style="background-color: darkslategray;">
@@ -35,48 +73,53 @@
             <div align="center" style="margin: 50px; margin-left: 200px; margin-right: 200px; padding: 20px; border-radius: 30px; box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);">
                 <h2 align="center" style="font-size: 30px;" class="font-link">User Registration</h2>
                 <p align="center" class="font-dark">Create an account with us, build your shelve and save all your favourite books.</p>
-                <h:form>
+                <h:form onsubmit="return validateFields()">
                     <table>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}"/></td>
+                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}" onblur="checkField('j_idt17:fname','j_idt17:fn')"/></td>
+                            <td align="right"><h:outputLabel id="fn" class="label warning" for="fname" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}"/></td>
+                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}" onblur="checkField('j_idt17:lname','j_idt17:ln')"/></td>
+                            <td align="right"><h:outputLabel id="ln" class="label warning" for="lname" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
                             <td align="left">
                                 <f:ajax event="valueChange" render="errorMessage">
-                                    <h:inputText class="textField" id="email" value="#{userBean.email}" validator="#{userBean.validateEmail}" required="true"/>
+                                    <h:inputText class="textField" id="email" value="#{userBean.email}" validator="#{userBean.validateEmail}" onblur="checkField('j_idt17:email','j_idt17:em')"/>
                                     <h:message for="email" id="errorMessage" style="color: red;"/>
                                 </f:ajax>
                             </td>
+                            <td align="right"><h:outputLabel id="em" class="label warning" for="email" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="question">Security Question<span class="warning">*</span></h:outputLabel></td>
                             <td align="left">
                                 <h:selectOneMenu class="textField" id="question" value="#{userBean.question}">
-                                    <f:selectItem itemLabel="Select Question"/>
                                     <f:selectItems value="#{userBean.questions}" var="q" itemValue="#{q.question}" itemLabel="#{q.question}"/>
                                 </h:selectOneMenu>
                             </td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="answer">Answer<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="answer" value="#{userBean.answer}"/></td>
+                            <td align="left"><h:inputText class="textField" id="answer" value="#{userBean.answer}" onblur="checkField('j_idt17:answer','j_idt17:an')"/></td>
+                            <td align="right"><h:outputLabel id="an" class="label warning" for="answer" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="pword">Password<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}"/></td>
+                            <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}" onblur="checkField('j_idt17:pword','j_idt17:pwd')"/></td>
+                            <td align="right"><h:outputLabel id="pwd" class="label warning" for="pword" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="cpword">Confirm Password<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputSecret class="textField" id="cpword"/></td>
+                            <td align="left"><h:inputSecret class="textField" id="cpword" value="" onblur="checkField('j_idt17:cpword','j_idt17:cpwd')"/></td>
+                            <td align="right"><h:outputLabel id="cpwd" class="label warning" for="cpword" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
-                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" action="#{userBean.registerUser}" style="width: 100%; margin-top: 10px;"/></td>
+                            <td align="right" colspan="2"><h:commandButton class="button font-light" value="Register" action="#{userBean.registerUser}" onclick="return validatePassword()" style="width: 100%; margin-top: 10px;"/></td>
                         </tr>
                         <tr>
                             <td class="font-dark" align="center" colspan="2">
