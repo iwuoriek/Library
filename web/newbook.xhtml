@@ -12,6 +12,30 @@
                 padding: 20px;
             }
         </style>
+        <script type="text/javascript">
+            function checkField(fieldId, labelId) {
+                var field = document.getElementById('j_idt43:' + fieldId).value;
+                if (field === "") {
+                    document.getElementById('j_idt43:' + labelId).innerHTML = "Required";
+                } else {
+                    document.getElementById('j_idt43:' + labelId).innerHTML = "";
+                }
+            }
+
+            function validateFields() {
+                var id = "j_idt43:";
+                var title = document.getElementById(id + 'title').value;
+                var author = document.getElementById(id + 'author').value;
+                var description = document.getElementById(id + 'desc').value;
+
+                if (title === "" || author === "" || description === "" || answer === "" || password === "") {
+                    alert('Fill in empty fields');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
     </h:head>
     <h:body>
         <div>
@@ -81,11 +105,12 @@
                         <td style="vertical-align: top; width: 75%" align="left">
                             <div class="font-dark" style="margin-left: 50px;">
                                 <h3 align="center" class="link">ADD A BOOK</h3>
-                                <h:form enctype="multipart/form-data">
+                                <h:form enctype="multipart/form-data" onsubmit="return validateFields()">
                                     <table>
                                         <tr>
                                             <td>Title</td>
-                                            <td><h:inputText class="textField" value="#{bookBean.bookTitle}" style="margin-left: 10px; width: 550px;"/></td>
+                                            <td><h:inputText id="title" class="textField" value="#{bookBean.bookTitle}" onblur="checkField('title', 'ti')" style="margin-left: 10px; width: 550px;"/></td>
+                                            <td align="right"><h:outputLabel id="ti" class="label warning" for="title" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                                         </tr>
                                         <tr>
                                             <td>Year Published</td>
@@ -105,9 +130,8 @@
                                         </tr>
                                         <tr>
                                             <td>Author</td>
-                                            <td>
-                                                <h:inputText class="textField" value="#{bookBean.author}"/>
-                                            </td>
+                                            <td><h:inputText id="author" class="textField" value="#{bookBean.author}" onblur="checkField('author', 'at')"/></td>
+                                            <td align="right"><h:outputLabel id="at" class="label warning" for="author" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                                         </tr>
                                         <tr>
                                             <td>Book File</td>
@@ -122,10 +146,12 @@
                                             <td>
                                                 <h:inputFile style="margin-left: 10px;" value="#{bookBean.cover}"/>
                                             </td>
+                                            <td><h:message for="" style="font-size: 17px; color: red;"/></td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>
-                                            <td><h:inputTextarea class="textField" value="#{bookBean.description}" style="height: 150px; width: 450px;"/></td>
+                                            <td><h:inputTextarea id="desc" class="textField" value="#{bookBean.description}" onblur="checkField('desc', 'dc')" style="height: 150px; width: 450px;"/></td>
+                                            <td align="right"><h:outputLabel id="dc" class="label warning" for="desc" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                                         </tr>
                                         <tr>
                                             <td><h:commandButton class="button" value="Add Book" action="#{bookBean.addBook()}"/></td>

@@ -30,7 +30,7 @@ public class FileUploader {
         try {
             File f = new File(filePath + fileName);
             Path directory = Paths.get(filePath);
-            if(Files.notExists(directory, LinkOption.NOFOLLOW_LINKS)){
+            if (Files.notExists(directory, LinkOption.NOFOLLOW_LINKS)) {
                 Files.createDirectories(directory);
             }
             if (!f.exists()) {
@@ -57,12 +57,38 @@ public class FileUploader {
         return fileName;
     }
 
+    public String setDefault(String userId) {
+        try {
+            String filePath = ROOT + "\\Images\\";
+            File f = new File(filePath + userId + ".png");
+            Path directory = Paths.get(filePath);
+            if (Files.notExists(directory, LinkOption.NOFOLLOW_LINKS)) {
+                Files.createDirectories(directory);
+            }
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            try (InputStream in = new java.io.FileInputStream(new File(getClass().getResource("image/default.png").getPath()));
+                    OutputStream out = new FileOutputStream(f);) {
+                int c;
+                while ((c = in.read()) != -1) {
+                    out.write(c);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
+        return userId + ".png";
+    }
+
     public String uploadBook(Part file, String bookId) {
         String fileName = null;
         if (file.getContentType().equals("application/pdf")) {
             fileName = bookId + ".pdf";
             String filePath = ROOT + "\\Books\\";
             uploadFile(file, fileName, filePath);
+        } else {
+            throw new NullPointerException();
         }
         return fileName;
     }
@@ -73,6 +99,8 @@ public class FileUploader {
             fileName = bookId + ".png";
             String filePath = ROOT + "\\Books\\Cover\\";
             uploadFile(file, fileName, filePath);
+        } else {
+            throw new NullPointerException();
         }
         return fileName;
     }

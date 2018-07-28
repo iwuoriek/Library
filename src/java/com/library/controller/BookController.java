@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.FacesException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
@@ -36,18 +38,23 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
     private final String root = FileUploader.ROOT + "Books\\";
 
     public String addBook() {
-        Book book = new Book();
-        book.setBookId(new GenerateId().generateBookId(bookService.getBooks()));
-        book.setBookTitle(getBookTitle());
-        book.setDescription(getDescription());
-        book.setGenre(getGenre());
-        book.setAuthor(getAuthor());
-        book.setRating(getRating());
-        book.setFileName(new FileUploader().uploadBook(bookFile, book.getBookId()));
-        book.setCover(new FileUploader().uplaodBookCover(cover, book.getBookId()));
-        book.setYear(getYear());
-        bookService.addBook(book);
-        setBook(new Book());
+        try {
+            Book book = new Book();
+            book.setBookId(new GenerateId().generateBookId(bookService.getBooks()));
+            book.setBookTitle(getBookTitle());
+            book.setDescription(getDescription());
+            book.setGenre(getGenre());
+            book.setAuthor(getAuthor());
+            book.setRating(getRating());
+            book.setFileName(new FileUploader().uploadBook(bookFile, book.getBookId()));
+            book.setCover(new FileUploader().uplaodBookCover(cover, book.getBookId()));
+            book.setYear(getYear());
+            bookService.addBook(book);
+            setBook(new Book());
+        } catch (NullPointerException e) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Upload the appropriate files");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
         return "newbook";
     }
 

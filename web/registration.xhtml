@@ -8,44 +8,56 @@
         <link type="text/css" rel="stylesheet" href="resources/css/default.css"></link>
         <title>The Library</title>
         <script type="text/javascript">
-            function checkField(fieldId, labelId){
-                var field = document.getElementById(fieldId).value;
-                if(field === ""){
-                    document.getElementById(labelId).innerHTML = "Required";
+            function checkField(fieldId, labelId) {
+                var field = document.getElementById('j_idt17:' + fieldId).value;
+                if (field === "") {
+                    document.getElementById('j_idt17:' + labelId).innerHTML = "Required";
                 } else {
-                    document.getElementById(labelId).innerHTML = "";
+                    document.getElementById('j_idt17:' + labelId).innerHTML = "";
                 }
             }
-            
-            function validateFields(){
+
+            function validateFields() {
                 var id = "j_idt17:";
-                var firstname = document.getElementById(id+'fname').value;
-                var lastname = document.getElementById(id+'lname').value;
-                var email = document.getElementById(id+'email').value;
-                var answer = document.getElementById(id+'answer').value;
-                var password = document.getElementById(id+'pword').value;
-                var confirmPassword = document.getElementById(id+'cpword').value;
-                
-                if(firstname === "" || lastname === "" || email === "" || answer === "" || password === "" || password !== confirmPassword){
+                var firstname = document.getElementById(id + 'fname').value;
+                var lastname = document.getElementById(id + 'lname').value;
+                var email = document.getElementById(id + 'email').value;
+                var answer = document.getElementById(id + 'answer').value;
+                var password = document.getElementById(id + 'pword').value;
+
+                if (firstname === "" || lastname === "" || email === "" || answer === "" || password === "") {
                     alert('Fill in empty fields');
                     return false;
                 } else {
                     return true;
                 }
             }
-            
-            function validatePassword(){
+
+            function validatePassword() {
                 var id = "j_idt17:";
-                var password = document.getElementById(id+'pword').value;
-                var confirmPassword = document.getElementById(id+'cpword').value;
-                if(password === confirmPassword){
+                var password = document.getElementById(id + 'pword').value;
+                var confirmPassword = document.getElementById(id + 'cpword').value;
+                if (password === confirmPassword) {
                     return true;
                 } else {
-                    document.getElementById(id+'cpwd').innerHTML = "Passwords do not match";
+                    document.getElementById(id + 'cpwd').innerHTML = "Passwords do not match";
                     return false;
                 }
             }
-            
+
+            function validateEmail() {
+                var email = document.getElementById('j_idt17:email').value;
+                if (email.includes('@')) {
+                    if (email.includes('.')) {
+                        document.getElementById('j_idt17:em').innerHTML = "";
+                    } else {
+                        document.getElementById('j_idt17:em').innerHTML = "Invalid pattern";
+                    }
+                } else {
+                    document.getElementById('j_idt17:em').innerHTML = "Invalid pattern";
+                }
+            }
+
         </script>
     </h:head>
     <h:body>
@@ -77,19 +89,19 @@
                     <table>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="fname">First Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}" onblur="checkField('j_idt17:fname','j_idt17:fn')"/></td>
+                            <td align="left"><h:inputText class="textField" id="fname" value="#{userBean.firstname}" onblur="checkField('fname', 'fn')"/></td>
                             <td align="right"><h:outputLabel id="fn" class="label warning" for="fname" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="lname">Last Name<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}" onblur="checkField('j_idt17:lname','j_idt17:ln')"/></td>
+                            <td align="left"><h:inputText class="textField" id="lname" value="#{userBean.lastname}" onblur="checkField('lname', 'ln')"/></td>
                             <td align="right"><h:outputLabel id="ln" class="label warning" for="lname" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="email">Email<span class="warning">*</span></h:outputLabel></td>
                             <td align="left">
                                 <f:ajax event="valueChange" render="errorMessage">
-                                    <h:inputText class="textField" id="email" value="#{userBean.email}" validator="#{userBean.validateEmail}" onblur="checkField('j_idt17:email','j_idt17:em')"/>
+                                    <h:inputText class="textField" id="email" value="#{userBean.email}" validator="#{userBean.validateEmail}" onblur="validateEmail()"/>
                                     <h:message for="email" id="errorMessage" style="color: red;"/>
                                 </f:ajax>
                             </td>
@@ -105,17 +117,17 @@
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="answer">Answer<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputText class="textField" id="answer" value="#{userBean.answer}" onblur="checkField('j_idt17:answer','j_idt17:an')"/></td>
+                            <td align="left"><h:inputText class="textField" id="answer" value="#{userBean.answer}" onblur="checkField('answer', 'an')"/></td>
                             <td align="right"><h:outputLabel id="an" class="label warning" for="answer" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="pword">Password<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}" onblur="checkField('j_idt17:pword','j_idt17:pwd')"/></td>
+                            <td align="left"><h:inputSecret class="textField" id="pword" value="#{userBean.password}" onblur="checkField('pword', 'pwd')"/></td>
                             <td align="right"><h:outputLabel id="pwd" class="label warning" for="pword" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>
                             <td align="right"><h:outputLabel class="label font-dark" for="cpword">Confirm Password<span class="warning">*</span></h:outputLabel></td>
-                            <td align="left"><h:inputSecret class="textField" id="cpword" value="" onblur="checkField('j_idt17:cpword','j_idt17:cpwd')"/></td>
+                            <td align="left"><h:inputSecret class="textField" id="cpword" onblur="checkField('cpword', 'cpwd')"/></td>
                             <td align="right"><h:outputLabel id="cpwd" class="label warning" for="cpword" style="font-family: calibri; font-size: 17px;"></h:outputLabel></td>
                         </tr>
                         <tr>

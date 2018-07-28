@@ -45,9 +45,10 @@ public class UserController extends User implements java.io.Serializable {
         user.setEmail(getEmail());
         user.setQuestion(getQuestion());
         user.setAnswer(getAnswer());
+        user.setImageFileName(new FileUploader().setDefault(user.getId()));
         user.setPassword(getPassword());
         user.setUserRole("NON-ADMIN");
-        if (userService.getUser(user.getEmail()) == null){
+        if (userService.getUser(user.getEmail()) == null) {
             userService.registerUser(user);
             return "login";
         } else {
@@ -88,10 +89,10 @@ public class UserController extends User implements java.io.Serializable {
         }
     }
 
-    public void emailChange(ValueChangeEvent event){
+    public void emailChange(ValueChangeEvent event) {
         String email = event.getNewValue().toString();
         UserAccount user = userService.getUser(email);
-        if(user != null){
+        if (user != null) {
             setQuestion(user.getQuestion());
         } else {
             setQuestion(null);
@@ -120,11 +121,7 @@ public class UserController extends User implements java.io.Serializable {
                 session.setAttribute("userId", user.getId());
                 session.setAttribute("role", user.getUserRole());
                 session.setAttribute("user", user);
-                if (user.getImageFileName() != null) {
-                    session.setAttribute("imageUrl", root + user.getImageFileName());
-                } else {
-                    session.setAttribute("imageUrl", root + "default.png");
-                }
+                session.setAttribute("imageUrl", root + user.getImageFileName());
             } else {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", "Your password is incorrect!");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -170,7 +167,7 @@ public class UserController extends User implements java.io.Serializable {
         String content = new String();
         try {
             if (user.getUserRole().equals("NON-ADMIN")) {
-               content = "userhome?faces-redirect=true";
+                content = "userhome?faces-redirect=true";
             } else if (user.getUserRole().equals("ADMIN")) {
                 content = "adminhome?faces-redirect=true";
             }

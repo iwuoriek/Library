@@ -51,4 +51,15 @@ public class GenerateId {
         }
         return userId;
     }
+    
+    public void prints(){
+        String path = getClass().getResource("image/default.png").toString();
+        String path1 = getClass().getResource("image/default.png").getPath();
+        System.out.println(path);
+        System.out.println(path1);
+    }
+    
+    public static void main(String arg[]){
+        new GenerateId().prints();
+    }
 }

@@ -11,6 +11,20 @@
                 padding: 20px;
             }
         </style>
+        <script type="text/javascript">
+            function validateFields() {
+                var id = "j_idt37:";
+                var firstname = document.getElementById(id + 'fname').value;
+                var lastname = document.getElementById(id + 'lname').value
+
+                if (firstname === "" || lastname === "") {
+                    alert('Fields cannot be empty');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
     </h:head>
     <h:body>
         <div>
@@ -74,7 +88,7 @@
                         <td style="vertical-align: top; width: 75%" align="left">
                             <div class="font-dark" style="margin-left: 50px;">
                                 <h3 align="center" class="link">User Profile</h3>
-                                <h:form enctype="multipart/form-data">
+                                <h:form enctype="multipart/form-data" onsubmit="return validateFields()">
                                     <table>
                                         <tr>
                                             <td align="left"><h:outputLabel class="label font-dark" for="id">User ID<span class="warning">*</span></h:outputLabel></td>
