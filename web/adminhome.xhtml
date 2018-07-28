@@ -8,14 +8,22 @@
         <title>Administrator</title>
         <style>
             #td1{
-                border-bottom: 1px solid #4296a2;
-                padding: 10px;
+                padding: 20px;
+            }
+            #icon{
+                width: 250px;
+                height: 250px;
+                margin-left: 50px;
+                margin-bottom: 50px;
+                background-color: #4296a2;
+                border-radius: 45px;
+                cursor: pointer;
             }
         </style>
     </h:head>
     <h:body>
         <div>
-            <div style="box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);">
+            <div>
                 <table width="100%" >
                     <tr>
                         <td align="left" width="40%">
@@ -32,66 +40,90 @@
                     </tr>
                 </table>
             </div>
-            <div class="content-div">
+            <div style="margin-right: 50px;">
                 <table width="100%">
                     <tr>
-                        <td style="vertical-align: top; width: 30%;" align="left">
-                            <table>
+                        <td style="vertical-align: top; width: 25%; background-color: darkslategrey;" align="left">
+                            <table align="center">
                                 <tr>
-                                    <td rowspan="3">
-                                        <div>
-                                            <h:graphicImage url="/user/image/#{userBean.imageFileName}" style="width: 125px; height: 150px; border: 1px solid black;"/>
+                                    <td  align="center">
+                                        <div style="width: 150px; height: 150px; border-radius: 200px; margin-top: 20px;">
+                                            <h:graphicImage url="/user/image/#{userBean.imageFileName}" style="width: 150px; height: 150px; border-radius: 200px;"/>
                                         </div>
                                     </td>
-                                    <td>
-                                        <h:outputLabel class="font-dark">NAME: #{userBean.lastname}, #{userBean.firstname}</h:outputLabel>
-                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <h:outputLabel class="font-dark">EMAIL: #{userBean.email}</h:outputLabel>
-                                    </td>
+                                    <td align="center">
+                                        <h:outputLabel class="font-light">#{userBean.lastname}, #{userBean.firstname}</h:outputLabel>
+                                    </td> 
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <h:outputLabel class="font-dark">ROLE: #{userBean.userRole}</h:outputLabel>
+                                    <td align="center">
+                                        <h:outputLabel class="font-light">#{userBean.email}</h:outputLabel>
                                     </td>
                                 </tr>
                             </table>
-                            <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
+                            <table style="width: 100%; margin-top: 50px;" >
                                 <h:form>
-                                <tr>
-                                    <td id="td1" class="card-title"><h:commandLink class="link  font-light" action="adminhome">DASHBOARD</h:commandLink></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1"><h:commandLink class="link font-link" action="admindetails">Personal Details</h:commandLink></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1"><h:commandLink class="link font-link" action="passwordChange">Change Password</h:commandLink></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1"><h:commandLink class="link font-link" action="newbook">New Book</h:commandLink></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1"><h:commandLink class="link font-link" action="#">Update Book</h:commandLink></td>
-                                </tr>
-                                <tr>
-                                    <td id="td1"><h:commandLink class="link font-link" action="#{userBean.doLogout()}">Logout</h:commandLink></td>
-                                </tr>
+                                    <tr>
+                                        <td id="td1" class="card-title"><h:commandLink class="link  font-light" action="adminhome">Dashboard</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link font-link" action="admindetails">Personal Details</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link font-link" action="passwordChange">Change Password</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link font-link" action="newbook">New Book</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link font-link" action="#">Update Book</h:commandLink></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"><h:commandLink class="link font-link" action="#{userBean.doLogout()}">Logout</h:commandLink></td>
+                                    </tr>
                                 </h:form>
                             </table>
                         </td>
-                        <td style="vertical-align: top; width: 60%; margin-right: 100px;" align="">
-                            <div class="font-dark" style="margin-left: 20px;">
-                                Search for books, authors, articles, etc.
-                                <h:form>
-                                    <div>
-                                        <h:inputText class="searchField font-dark"/>
-                                    </div>
-                                    <div>
-                                        <h:button class="button font-light" value="Search"/>
-                                    </div>
-                                </h:form>
+                        <td style="vertical-align: top; width: 75%; margin-right: 100px;" align="">
+                            <div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h:link outcome="admindetails">
+                                                <div id="icon" align="center" title="Edit Profile">
+                                                    <h:graphicImage url="resources/images/id_card.png" style="width: 200px; height: 200px;"/>
+                                                </div>
+                                            </h:link>
+                                        </td>
+                                        <td>
+                                            <h:link outcome="passwordChange">
+                                                <div id="icon" align="center" title="Change Password">
+                                                    <h:graphicImage url="resources/images/password.jpg" style="width: 200px; height: 200px;"/>
+                                                </div>
+                                            </h:link>
+                                        </td>
+                                        <td>
+                                            <h:link outcome="newbook">
+                                                <div id="icon" align="center" title="New Book">
+                                                    <h:graphicImage url="resources/images/book.png" style="width: 200px; height: 200px;"/>
+                                                </div>
+                                            </h:link>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h:form>
+                                                <h:commandLink action="#{userBean.doLogout()}">
+                                                    <div id="icon" align="center" title="Logout">
+                                                        <h:graphicImage url="resources/images/shutdown.png" style="width: 200px; height: 200px;"/>
+                                                    </div>
+                                                </h:commandLink>
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </td>
                     </tr>

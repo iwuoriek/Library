@@ -14,10 +14,10 @@ INSERT INTO Library.Genre (GENRE) VALUES ('General');
 INSERT INTO Library.Genre (GENRE) VALUES ('Literature');
 INSERT INTO Library.Genre (GENRE) VALUES ('Article');
 
-INSERT INTO Library.Security_Question (QUESTION) VALUES('What the name of your first pet?');
-INSERT INTO Library.Security_Question (QUESTION) VALUES('What the name of your first car?');
-INSERT INTO Library.Security_Question (QUESTION) VALUES('What the name of your town of birth?');
-INSERT INTO Library.Security_Question (QUESTION) VALUES('What the name of your first girlfriend?');
+INSERT INTO Library.Security_Question (QUESTION) VALUES('What was the name of your first pet?');
+INSERT INTO Library.Security_Question (QUESTION) VALUES('What was the name of your first car?');
+INSERT INTO Library.Security_Question (QUESTION) VALUES('What was the name of your town of birth?');
+INSERT INTO Library.Security_Question (QUESTION) VALUES('What was the name of your first girlfriend?');
 
 UPDATE Library.UserAccount SET USER_ROLE='ADMIN' WHERE EMAIL='tommy@library.com';
 

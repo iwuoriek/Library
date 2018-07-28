@@ -9,14 +9,13 @@
         <title>The Library</title>
         <style>
             #td1{
-                border-bottom: 1px solid #4296a2;
-                padding: 10px;
+                padding: 20px;
             }
         </style>
     </h:head>
     <h:body>
         <div>
-            <div style="box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);">
+            <div>
                 <table width="100%" >
                     <tr>
                         <td align="left" width="40%">
@@ -33,34 +32,33 @@
                     </tr>
                 </table>
             </div>
-            <div class="content-div">
+            <div style="margin-right: 50px;">
                 <table width="100%">
                     <tr>
-                        <td style="vertical-align: top; width: 30%;" align="left">
-                            <table>
+                        <td style="vertical-align: top; width: 25%; background-color: darkslategrey;" align="left">
+                            <table align="center">
                                 <tr>
-                                    <td rowspan="3">
-                                        <h:graphicImage url="/user/image/#{userBean.imageFileName}" alt="No Image" style="width: 125px; height: 150px; border: 1px solid black;"/>
-                                    </td>
-                                    <td>
-                                        <h:outputLabel class="font-dark">NAME: #{userBean.lastname}, #{userBean.firstname}</h:outputLabel>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h:outputLabel class="font-dark">EMAIL: #{userBean.email}</h:outputLabel>
+                                    <td  align="center">
+                                        <div style="width: 150px; height: 150px; border-radius: 200px; margin-top: 20px;">
+                                            <h:graphicImage url="/user/image/#{userBean.imageFileName}" style="width: 150px; height: 150px; border-radius: 200px;"/>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <h:outputLabel class="font-dark">ROLE: #{userBean.userRole}</h:outputLabel>
+                                    <td align="center">
+                                        <h:outputLabel class="font-light">#{userBean.lastname}, #{userBean.firstname}</h:outputLabel>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <h:outputLabel class="font-light">#{userBean.email}</h:outputLabel>
                                     </td>
                                 </tr>
                             </table>
-                            <table style="border: 1px solid #4296a2; width: 100%; margin-top: 50px;" >
+                            <table style="width: 100%; margin-top: 50px;" >
                                 <h:form>
-                                    <tr> 
-                                        <td id="td1" class="card-title"><h:link class="link  font-light" outcome="userhome">DASHBOARD</h:link></td>
+                                    <tr>
+                                        <td id="td1" class="card-title"><h:commandLink class="link  font-light" action="userhome">Dashboard</h:commandLink></td>
                                     </tr>
                                     <tr>
                                         <td id="td1"><h:commandLink class="link font-link" action="userDetails">Personal Details</h:commandLink></td>
@@ -74,17 +72,11 @@
                                 </h:form>
                             </table>
                         </td>
-                        <td style="vertical-align: top; width: 60%; margin-right: 100px;" align="">
+                        <td style="vertical-align: top; width: 75%; margin-right: 100px;" align="">
                             <div class="font-dark" style="margin-left: 20px;">
-                                Search for books, authors, articles, etc.
-                                <h:form>
-                                    <div>
-                                        <h:inputText class="searchField font-dark"/>
-                                    </div>
-                                    <div>
-                                        <h:button class="button font-light" value="Search"/>
-                                    </div>
-                                </h:form>
+                                <div align="center">
+                                    <h:graphicImage url="resources/images/book-shelf.png" style="width: 300px; height: 150px;"/>
+                                </div>
                                 <div style="margin-top: 10px; border: 1px solid #4296a2;">
                                     <div align="center" class="card-title font-light">SHELVE</div>
                                     <div class="card-body">
