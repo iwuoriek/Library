@@ -67,7 +67,13 @@ public class FileUploader {
         return fileName;
     }
 
-    public void downloadFile() {
-
+    public String uplaodBookCover(Part file, String bookId) {
+        String fileName = null;
+        if (file.getContentType().equals("image/png") || file.getContentType().equals("image/jpeg")) {
+            fileName = bookId + ".png";
+            String filePath = ROOT + "\\Books\\Cover\\";
+            uploadFile(file, fileName, filePath);
+        }
+        return fileName;
     }
 }

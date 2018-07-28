@@ -11,9 +11,11 @@ import com.library.service.BookService;
 import com.library.utils.FacesUtil;
 import com.library.utils.FileUploader;
 import com.library.utils.GenerateId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.FacesException;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
@@ -25,13 +27,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Named("bookBean")
 @SessionScoped
-public class BookController extends BooksAndAuthors implements java.io.Serializable{
-    
+public class BookController extends BooksAndAuthors implements java.io.Serializable {
+
     @Autowired
     private BookService bookService;
     private Part bookFile;
+    private Part cover;
     private final String root = FileUploader.ROOT + "Books\\";
-    public String addBook(){
+
+    public String addBook() {
         Book book = new Book();
         book.setBookId(new GenerateId().generateBookId(bookService.getBooks()));
         book.setBookTitle(getBookTitle());
@@ -40,47 +44,64 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
         book.setAuthor(getAuthor());
         book.setRating(getRating());
         book.setFileName(new FileUploader().uploadBook(bookFile, book.getBookId()));
+        book.setCover(new FileUploader().uplaodBookCover(cover, book.getBookId()));
         book.setYear(getYear());
         bookService.addBook(book);
+        setBook(new Book());
         return "newbook";
     }
-    
-    public String updateBook(){
+
+    public String updateBook() {
         return "";
     }
-    
-    public String deleteBook(){
+
+    public String deleteBook() {
         return "";
     }
-    
-    public String readBook(Book book){
+
+    public String readBook(Book book) {
         HttpSession session = FacesUtil.getSession();
         session.setAttribute("bookToRead", root + book.getFileName());
         setBook(book);
         return "bookpage?faces-redirect=true";
     }
-    
-    public Integer[] getYears(){
+
+    public Integer[] getYears() {
         Integer[] years = new Integer[100];
         int year = new Date().getYear() + 1900;
-        for (int i = 0; i < years.length; i++){
+        for (int i = 0; i < years.length; i++) {
             years[i] = year;
             year--;
         }
         return years;
     }
-    
-    public List<Genre> getGenres(){
+
+    public List<Genre> getGenres() {
         return bookService.getGenre();
     }
-    
-    public List<Book> getBookList(){
+
+    public List<Book> getBookList() {
         return bookService.getBooks();
     }
-    
-    private void setBook(Book book){
+
+    public List<Book> getRecentBooks() throws FacesException {
+        List<Book> list = getBookList();
+        List<Book> newList = new ArrayList();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (newList.size() < 9) {
+                newList.add(list.get(i));
+            } else {
+                break;
+            }
+        }
+        return newList;
+    }
+
+    private void setBook(Book book) {
         setBookTitle(book.getBookTitle());
         setFileName(book.getFileName());
+        setAuthor(book.getAuthor());
+        setDescription(book.getDescription());
     }
 
     /**
@@ -95,5 +116,19 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
      */
     public void setBookFile(Part bookFile) {
         this.bookFile = bookFile;
+    }
+
+    /**
+     * @return the cover
+     */
+    public Part getCover() {
+        return cover;
+    }
+
+    /**
+     * @param cover the cover to set
+     */
+    public void setCover(Part cover) {
+        this.cover = cover;
     }
 }

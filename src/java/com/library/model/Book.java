@@ -34,6 +34,8 @@ public class Book implements java.io.Serializable{
     private String description;
     @Column(name="FILE_NAME", nullable=false)
     private String fileName;
+    @Column(name="COVER")
+    private String cover;
     @Column(name="YEAR_PUBLISHED")
     private int year;
     
@@ -147,5 +149,19 @@ public class Book implements java.io.Serializable{
      */
     public void setYear(int year) {
         this.year = year;
+    }
+
+    /**
+     * @return the cover
+     */
+    public String getCover() {
+        return cover;
+    }
+
+    /**
+     * @param cover the cover to set
+     */
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }
