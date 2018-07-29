@@ -19,5 +19,5 @@ INSERT INTO Library.Security_Question (QUESTION) VALUES('What was the name of yo
 INSERT INTO Library.Security_Question (QUESTION) VALUES('What was the name of your town of birth?');
 INSERT INTO Library.Security_Question (QUESTION) VALUES('What was the name of your first girlfriend?');
 
-UPDATE Library.UserAccount SET USER_ROLE='ADMIN' WHERE EMAIL='tommy@library.com';
+UPDATE Library.UserAccount SET USER_ROLE='ADMIN' WHERE ID='LIBUSR-1';
 

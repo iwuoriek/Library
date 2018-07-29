@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -91,11 +90,11 @@ public class BookController extends BooksAndAuthors implements java.io.Serializa
         return bookService.getBooks();
     }
 
-    public List<Book> getRecentBooks() throws FacesException {
+    public List<Book> getRecentBooks() {
         List<Book> list = getBookList();
         List<Book> newList = new ArrayList();
         for (int i = list.size() - 1; i >= 0; i--) {
-            if (newList.size() < 9) {
+            if (newList.size() < 8) {
                 newList.add(list.get(i));
             } else {
                 break;
