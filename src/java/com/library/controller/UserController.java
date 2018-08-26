@@ -11,6 +11,7 @@ import com.library.model.UserAccount;
 import com.library.service.UserAccountService;
 import com.library.utils.FacesUtil;
 import com.library.utils.GenerateId;
+import com.library.utils.PasswordEncryption;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.enterprise.context.SessionScoped;
@@ -46,7 +47,7 @@ public class UserController extends User implements java.io.Serializable {
         user.setQuestion(getQuestion());
         user.setAnswer(getAnswer());
         user.setImageFileName(new FileUploader().setDefault(user.getId()));
-        user.setPassword(getPassword());
+        user.setPassword(new PasswordEncryption().encryptPassword(getPassword()));
         user.setUserRole("NON-ADMIN");
         if (userService.getUser(user.getEmail()) == null) {
             userService.registerUser(user);
@@ -80,7 +81,7 @@ public class UserController extends User implements java.io.Serializable {
     public String doPasswordChange() {
         UserAccount user = userService.getUser(getEmail());
         if (user != null && user.getAnswer().equalsIgnoreCase(getAnswer())) {
-            userService.updatePassword(getEmail(), getPassword());
+            userService.updatePassword(getEmail(), new PasswordEncryption().encryptPassword(getPassword()));
             return doLogout();
         } else {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Incorrect email or answer!");
@@ -115,7 +116,8 @@ public class UserController extends User implements java.io.Serializable {
     public String doLogin() {
         UserAccount user = userService.getUser(getEmail());
         if (user != null) {
-            if (getPassword().compareTo(user.getPassword()) == 0) {
+            String password = new PasswordEncryption().decryptPassword(user.getPassword());
+            if (getPassword().compareTo(password) == 0) {
                 setLoggedInUser(user);
                 HttpSession session = FacesUtil.getSession();
                 session.setAttribute("userId", user.getId());
@@ -123,12 +125,12 @@ public class UserController extends User implements java.io.Serializable {
                 session.setAttribute("user", user);
                 session.setAttribute("imageUrl", root + user.getImageFileName());
             } else {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", "Your password is incorrect!");
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", "Incorrect user email or password");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return "login";
             }
         } else {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", "User does not exist!");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", "Incorrect user email or password");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return "login";
         }
